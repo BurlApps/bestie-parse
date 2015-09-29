@@ -4,32 +4,32 @@ var Image = Parse.Object.extend("Image")
 Parse.Cloud.define("setVoted", function(req, res) {
 	var user = Parse.User.current()
 	var winner = new Image()
-	var looser = new Image()
+	var loser = new Image()
 	
 	winner.id = req.params.winner
-	looser.id = req.params.looser
+	loser.id = req.params.loser
 	
 	winner.increment("votes")
 	winner.increment("wins")
 	
-	looser.increment("votes")
-	looser.increment("losses")
+	loser.increment("votes")
+	loser.increment("losses")
 	
 	winner.fetch().then(function() {
-		return looser.fetch()
+		return loser.fetch()
 	}).then(function() {
 		var wRelation = winner.relation("voters")
 		var lRelation = winner.relation("voters")
 		
-		winner.increment("opponents", looser.get("score"))
-		looser.increment("opponents", winner.get("score"))
+		winner.increment("opponents", loser.get("score"))
+		loser.increment("opponents", winner.get("score"))
 		
 		wRelation.add(user)
 		lRelation.add(user)
 		
 		return winner.save()
 	}).then(function() {
-		return looser.save()
+		return loser.save()
 	}).then(function() {
 		var batch = winner.get("batch")
 		
@@ -38,7 +38,7 @@ Parse.Cloud.define("setVoted", function(req, res) {
 		batch.increment("votes")
 		return batch.save()
 	}).then(function() {
-		var batch = looser.get("batch")
+		var batch = loser.get("batch")
 		
 		if(!batch) return
 		
