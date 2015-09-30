@@ -4,18 +4,21 @@ Parse.Cloud.define("feed", function(req, res) {
 	var user = Parse.User.current()
 	var query = new Parse.Query(Image)
 	
-	query.equalTo("active", true)
-	query.notEqualTo("voters", user)
-	query.notEqualTo("creator", user)
-	query.equalTo("gender", user.get("interested"))
-	query.limit(50)
-	
-	if(Math.random() >= 0.5) 
-		query.ascending("objectId")
-	else
-		query.descending("objectId")
+	user.fetch().then(function(user) {		
+		query.exists("image")
+		query.equalTo("active", true)
+		query.notEqualTo("voters", user)
+		query.notEqualTo("creator", user)
+		query.equalTo("gender", user.get("interested"))
+		query.limit(50)
 		
-	query.find(function(images) {
-		res.success(images)
+		if(Math.random() >= 0.5) 
+			query.ascending("objectId")
+		else
+			query.descending("objectId")
+			
+		query.find(function(images) {
+			res.success(images)
+		})
 	})
 })

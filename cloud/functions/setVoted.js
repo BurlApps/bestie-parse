@@ -51,7 +51,7 @@ Parse.Cloud.define("setVoted", function(req, res) {
 		
 		batch.increment("userVotes")
 		return batch.save()
-	}).then(function(batch) {
-		res.success(batch)
+	}).then(function() {
+		res.success()
 	})
 })
