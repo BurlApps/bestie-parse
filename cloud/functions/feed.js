@@ -6,6 +6,7 @@ Parse.Cloud.define("feed", function(req, res) {
 	
 	user.fetch().then(function(user) {		
 		query.exists("image")
+		query.notEqualTo("flagged", true)
 		query.equalTo("active", true)
 		query.notEqualTo("voters", user)
 		query.notEqualTo("creator", user)
