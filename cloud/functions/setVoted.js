@@ -9,11 +9,6 @@ Parse.Cloud.define("setVoted", function(req, res) {
 	winner.id = req.params.winner
 	loser.id = req.params.loser
 	
-	winner.increment("votes")
-	winner.increment("wins")
-	
-	loser.increment("votes")
-	loser.increment("losses")
 	
 	winner.fetch().then(function() {
 		return loser.fetch()
@@ -21,7 +16,12 @@ Parse.Cloud.define("setVoted", function(req, res) {
 		var wRelation = winner.relation("voters")
 		var lRelation = winner.relation("voters")
 		
-		winner.increment("opponents", loser.get("score"))
+		winner.increment("opponents", loser.get("score"))		
+		winner.increment("votes")
+		winner.increment("wins")
+	
+		loser.increment("votes")
+		loser.increment("losses")
 		loser.increment("opponents", winner.get("score"))
 		
 		wRelation.add(user)

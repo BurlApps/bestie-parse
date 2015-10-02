@@ -10,13 +10,15 @@ Parse.Cloud.define("feed", function(req, res) {
 		query.exists("image")
 		query.notEqualTo("flagged", true)
 		query.notEqualTo("active", false)
-		query.notEqualTo("voters", user)
+		//query.notEqualTo("voters", user)
 		query.notEqualTo("creator", user)
 		query.limit(50)
 		
 		if(interested && interested != "both") {
 			query.equalTo("gender", interested)
 		}
+		
+		query.ascending("priority")
 		
 		if(Math.random() >= 0.5) 
 			query.ascending("objectId")

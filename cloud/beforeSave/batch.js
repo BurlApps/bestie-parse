@@ -5,21 +5,19 @@ Parse.Cloud.beforeSave("Batch", function(req, res) {
   var userVotes = object.get("userVotes")
 	var maxVotes = object.get("maxVotes")
 	
-	if(!object.isNew()) {
-		if(votes > maxVotes)
-			object.set("votes", maxVotes)
-			
-		if(userVotes > maxVotes)
-			object.set("userVotes", maxVotes)
-	
-		if(active)
-			object.set("active", votes < maxVotes || userVotes < maxVotes)
-
-	  return res.success()
+	if(object.isNew()) {
+		object.set("votes", 0)
+		object.set("userVotes", 0)
 	}
+		
+	if(votes > maxVotes)
+		object.set("votes", maxVotes)
+		
+	if(userVotes > maxVotes)
+		object.set("userVotes", maxVotes)
 
-	object.set("votes", 0)
-	object.set("userVotes", 0)
+	if(active)
+		object.set("active", votes < maxVotes || userVotes < maxVotes)
 
   return res.success()
 })

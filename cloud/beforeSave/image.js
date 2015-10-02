@@ -16,7 +16,7 @@ Parse.Cloud.beforeSave("Image", function(req, res) {
 	  if(!object.isNew()) {
 		  if(active) {
 		  	object.set("score", score)
-				object.set("active", votes < maxVotes)
+				object.set("priority", votes < maxVotes ? 0 : 1)
 			}
 		  
 		  return res.success()
@@ -30,6 +30,7 @@ Parse.Cloud.beforeSave("Image", function(req, res) {
 		object.set("losses", 0)
 		object.set("opponents", 0)
 		object.set("flagged", false)
+		object.set("priority", 0)
 		
 		return res.success()
 	})
