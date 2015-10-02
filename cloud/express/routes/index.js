@@ -12,13 +12,13 @@ module.exports.notfound = function(req, res) {
 
 module.exports.terms = function(req, res) {
   Parse.Config.get().then(function(settings) {
-  	res.redirect(settings.get("termsUrl"))
+  	res.redirect(settings.get("termsURL"))
   })
 }
 
 module.exports.privacy = function(req, res) {
   Parse.Config.get().then(function(settings) {
-  	res.redirect(settings.get("privacyUrl"))
+  	res.redirect(settings.get("privacyURL"))
   })
 }
 

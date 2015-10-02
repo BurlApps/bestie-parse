@@ -29,7 +29,7 @@ Parse.Cloud.beforeSave("Image", function(req, res) {
 		object.set("wins", 0)
 		object.set("losses", 0)
 		object.set("opponents", 0)
-		object.set("flaggged", false)
+		object.set("flagged", false)
 		
 		return res.success()
 	})

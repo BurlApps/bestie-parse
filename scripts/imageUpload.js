@@ -16,23 +16,25 @@ fs.readdir(path, function(err, files) {
 	if(err) return console.error(err)
 	
 	files.forEach(function(filePath) {
-		if(["jpg", "png"].indexOf(filePath.split(".")[1]) == -1) return
+		if(["jpg", "jpeg", "png"].indexOf(filePath.split(".")[1]) == -1) return
 		
-		var tmpPath = filePath.split(".")[0] + ".jpg"
+		var tmpPath = filePath.split(".")[0] + ".jpeg"
 		
-		easyimg.resize({
+		easyimg.rescrop({
 			src: path + "/" + filePath,
 			dst: tmp + "/" + tmpPath,
 			width: 640,
 			height: 640,
+			cropwidth: 640,
+			cropheight: 640,
 			quality: 90,
 			flatten: true,
-			gravity: "Center"
-		}).then(function() {
+			gravity: gender == "male" ? "Center" : "North"
+		}).then(function() {		
 			fs.readFile(tmp + "/" + tmpPath, function(err, data) {
 				var fileData = Array.prototype.slice.call(new Buffer(data), 0)
-				var file = new Parse.File("image.jpg", fileData)
-				
+				var file = new Parse.File("image.jpeg", fileData)
+			
 				return file.save().then(function() {
 					var image = new VoterImage()
 					
@@ -47,6 +49,8 @@ fs.readdir(path, function(err, files) {
 					console.error(error)
 				})
 			})
+		}, function(error) {
+			console.error(error)
 		})
 	})
 })
