@@ -9,6 +9,7 @@ Parse.Cloud.define("setVoted", function(req, res) {
 	winner.id = req.params.winner
 	loser.id = req.params.loser
 	
+	var date = new Date()
 	
 	winner.fetch().then(function() {
 		return loser.fetch()
@@ -50,8 +51,11 @@ Parse.Cloud.define("setVoted", function(req, res) {
 		if(!batch) return
 		
 		batch.increment("userVotes")
-		return batch.save()
-	}).then(function(batch) {
-		res.success(batch)
+		
+		return batch.save().then(function() {
+			return batch.fetch()
+		}) 
+	}).then(function(batch) {				
+		res.success(batch ? (batch.get("userVotes") == batch.get("maxVotes")) : false)
 	})
 })

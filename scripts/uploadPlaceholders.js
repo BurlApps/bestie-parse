@@ -33,7 +33,7 @@ fs.readdir(path, function(err, files) {
 		}).then(function() {		
 			fs.readFile(tmp + "/" + tmpPath, function(err, data) {
 				var fileData = Array.prototype.slice.call(new Buffer(data), 0)
-				var file = new Parse.File("image.jpeg", fileData)
+				var file = new Parse.File("image.jpeg", fileData, "image/jpeg")
 			
 				return file.save().then(function() {
 					var image = new VoterImage()
