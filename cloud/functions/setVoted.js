@@ -55,7 +55,16 @@ Parse.Cloud.define("setVoted", function(req, res) {
 		return batch.save().then(function() {
 			return batch.fetch()
 		}) 
-	}).then(function(batch) {				
-		res.success(batch ? (batch.get("userVotes") == batch.get("maxVotes")) : false)
+	}).then(function(batch) {
+		var result
+		
+		if(batch) {
+			result = {
+				userVotes: batch.get("userVotes"),
+				finished: batch.get("userVotes") == batch.get("maxVotes")
+			}
+		}
+			
+		res.success(result)
 	})
 })
