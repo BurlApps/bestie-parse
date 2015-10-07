@@ -5,7 +5,7 @@ if [ -z "$1" ]; then
 else
   for var in "$@"; do
     if [ "$var" == "all" ]; then
-      parse deploy dev
+      parse deploy debug
       parse deploy release
     else
       parse deploy $var
