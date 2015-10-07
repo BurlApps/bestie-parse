@@ -3,8 +3,8 @@ Parse.Cloud.beforeSave(Parse.User, function(req, res) {
 	
 	if(object.isNew()) {
 		object.set("shared", false)
-		object.set("gender", "female")
-		object.set("interested", "both")
+		object.set("gender", object.get("gender") || "female")
+		object.set("interested", object.get("interested") || "both")
 		
 		return res.success()
 	}
