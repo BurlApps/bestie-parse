@@ -1,10 +1,13 @@
 {
   "applications": {
-    "release": {
+    "debug": {
       "applicationId": "q1NZZSGYNxaYIQq5dDNkMlD407fmm2Hq6BoXBzu4"
     },
+    "release": {
+      "applicationId": "2umHhGkMh7Gm6dU8rRVgHSPzbW5xOymXzenDx2XC"
+    },
     "_default": {
-      "link": "release"
+      "link": "debug"
     }
   }
 }

@@ -4,6 +4,8 @@ Parse.Cloud.define("feed", function(req, res) {
 	var user = Parse.User.current()
 	var query = new Parse.Query(Image)
 	
+	if(!user) res.success(false)
+	
 	user.fetch().then(function(user) {	
 		var interested = user.get("interested")
 			
