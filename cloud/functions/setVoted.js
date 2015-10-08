@@ -66,5 +66,5 @@ Parse.Cloud.define("setVoted", function(req, res) {
 		}
 			
 		res.success(result)
-	})
+	}, res.error)
 })

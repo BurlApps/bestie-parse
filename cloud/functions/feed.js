@@ -29,6 +29,6 @@ Parse.Cloud.define("feed", function(req, res) {
 			
 		query.find(function(images) {			
 			res.success(images)
-		})
+		}, res.error)
 	})
 })
