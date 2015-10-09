@@ -3,6 +3,7 @@ var Image = Parse.Object.extend("Image")
 Parse.Cloud.define("feed", function(req, res) {
 	var user = Parse.User.current()
 	var query = new Parse.Query(Image)
+	var random = Math.random() >= 0.5
 	
 	if(!user) res.success(false)
 	
@@ -16,13 +17,16 @@ Parse.Cloud.define("feed", function(req, res) {
 		query.notEqualTo("creator", user)
 		query.limit(50)
 		
-		if(interested && interested != "both") {
-			query.equalTo("gender", interested)
+		if(interested) {
+			if(interested != "both")
+				query.equalTo("gender", interested)
+			else
+				query.equalTo("gender", random ? "male" : "female")		
 		}
 		
 		query.ascending("priority")
 		
-		if(Math.random() >= 0.5) 
+		if(random) 
 			query.ascending("objectId")
 		else
 			query.descending("objectId")
