@@ -18,12 +18,16 @@ Parse.Cloud.beforeSave("Image", function(req, res) {
 		  	object.set("score", score)
 				object.set("priority", votes < maxVotes ? 0 : 1)
 			}
+			
+			if(votes > 0)
+				object.set("percent", wins/votes)
 		  
 		  return res.success()
 	  }
 		
 		object.set("active", !!object.get("active"))
 		object.set("votes", 0)
+		object.set("percent", 0)
 		object.set("maxVotes", config.get("imageMaxVotes"))
 		object.set("score", config.get("imageStarter"))
 		object.set("wins", 0)
