@@ -5,7 +5,7 @@ Parse.Cloud.define("feed", function(req, res) {
 	var query = new Parse.Query(Image)
 	var random = Math.random() >= 0.5
 	
-	if(!user) res.success(false)
+	if(!user) res.success([])
 	
 	user.fetch().then(function(user) {	
 		var interested = user.get("interested")
