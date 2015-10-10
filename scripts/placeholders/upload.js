@@ -34,7 +34,8 @@ fs.readdir(path, function(err, files) {
 			cropheight: 640,
 			quality: 90,
 			flatten: true,
-			gravity: "North"
+			gravity: "North",
+			ignoreAspectRatio: false
 		}).then(function() {		
 			fs.readFile(tmp + "/" + tmpPath, function(err, data) {
 				var fileData = Array.prototype.slice.call(new Buffer(data), 0)
