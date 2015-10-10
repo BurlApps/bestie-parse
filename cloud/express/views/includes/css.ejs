@@ -1,6 +1,4 @@
 <!-- CSS -->
-<!-- https://www.google.com/fonts#UsePlace:use/Collection:Titillium+Web:400,600,700|Courgette -->
-<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,700|Courgette' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/global.css?r=<%= random %>">
 
@@ -8,16 +6,4 @@
 	<link rel="stylesheet" href="/css/home.css?r=<%= random %>">
 <% } else if(template == "home/notfound") { %>
 	<link rel="stylesheet" href="/css/notfound.css?r=<%= random %>">
-<% } else if(template.split("/")[0] == "auth") { %>
-  <link rel="stylesheet" href="/css/modal.css?r=<%= random %>">
-<% } else if(template == "dashboard/classes/new") { %>
-  <link rel="stylesheet" href="/css/modal.css?r=<%= random %>"> 
-<% } else if(template.split("/")[0] == "dashboard") { %>
-  <link rel="stylesheet" href="/css/dashboard.css?r=<%= random %>">
-  <link rel="stylesheet" href="/css/dashboard.viewer.css?r=<%= random %>">
-  <link rel="stylesheet" href="/css/dashboard.table.css?r=<%= random %>">
-<% } else if(template == "student/index") { %>
-	<link rel="stylesheet" href="/css/student.css?r=<%= random %>">
-<% } else if(template == "student/message") { %>
-	<link rel="stylesheet" href="/css/student.message.css?r=<%= random %>">
 <% } %>

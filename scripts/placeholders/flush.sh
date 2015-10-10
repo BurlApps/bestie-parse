@@ -1,9 +1,8 @@
-node scripts/placeholders/clear.js $1
+TMP=$(mktemp /tmp/flush-script.XXXXXX)
 
-node scripts/placeholders/upload.js $1 ../Placeholders/Hot/female female
-node scripts/placeholders/upload.js $1 ../Placeholders/Hot/male male
-node scripts/placeholders/upload.js $1 ../Placeholders/Ugly/female female
-node scripts/placeholders/upload.js $1 ../Placeholders/Ugly/male male
-node scripts/placeholders/upload.js $1 ../Placeholders/Russians/female female
-node scripts/placeholders/upload.js $1 ../Placeholders/Russians/male male
-node scripts/placeholders/upload.js $1 ../Placeholders/Greek/male male
+node scripts/placeholders/clear.js $1
+bash scripts/placeholders/cropAll.sh $TMP
+node scripts/placeholders/upload.js $1 $TMP/female female
+node scripts/placeholders/upload.js $1 $TMP/male male
+
+rm -r $TMP

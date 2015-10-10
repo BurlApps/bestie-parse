@@ -1,0 +1,46 @@
+body > .container {
+  width: 1000px;
+  margin: 25px auto;
+  text-align: center;
+}
+
+.container .header {
+	width: 75px;
+	height: 75px;
+}
+
+.container .cards {
+	width: 750px;
+	height: 365px;	
+}
+
+.container .card {
+	width: 365px;
+	height: 100%;
+	background: #000;
+	overflow: hidden;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	border-radius: 4px;
+	cursor: pointer;
+	
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.container .vs {
+	width: 75px;
+	height: 75px;
+	line-height: 75px;
+	font-family: Bariol, sans-serif;
+	font-weight: bold;
+	font-size: 22px;
+	background: #fff;
+	color: #2096F3;
+	text-align: center;
+	display: inline-block;
+  vertical-align: middle;
+	
+	box-sizing: border-box;
+	border-radius: 37.5px;	
+}

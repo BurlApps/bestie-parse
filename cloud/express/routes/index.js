@@ -1,5 +1,5 @@
 module.exports.home = function(req, res) {
-  res.renderT('home/notfound')
+  res.renderT('home/index')
 }
 
 module.exports.support = function(req, res, next) {

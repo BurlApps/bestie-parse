@@ -36,15 +36,6 @@ mixpanel.track('Web: <%= template %>', {
 </script>
 <!-- end Mixpanel -->
 
-<% if(template.split("/")[0] == "home") { %>
+<% if(template == "home/index") { %>
 	<script type="text/javascript" src="/js/home.js?r=<%= random %>"></script>
-<% } else if(template.split("/")[0] == "auth") { %>
-	<script type="text/javascript" src="/js/modal.js?r=<%= random %>"></script>
-<% } else if(template == "dashboard/classes/new") { %>
-  <script type="text/javascript" src="/js/modal.js?r=<%= random %>"></script>
-<% } else if(template.split("/")[0] == "dashboard") { %>
-	<script type="text/javascript" src="/js/dashboard.js?r=<%= random %>"></script>
-<% } else if(template == "student/index") { %>
-	<script type="text/javascript" src="/js/jquery.mobile.min.js"></script>
-  <script type="text/javascript" src="/js/student.js?r=<%= random %>"></script>
 <% } %>

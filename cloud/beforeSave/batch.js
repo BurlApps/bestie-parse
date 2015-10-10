@@ -4,6 +4,7 @@ Parse.Cloud.beforeSave("Batch", function(req, res) {
   var votes = object.get("votes")
   var userVotes = object.get("userVotes")
 	var maxVotes = object.get("maxVotes")
+	var creator = object.get("creator")
 	
 	if(object.isNew()) {
 		object.set("votes", 0)
@@ -17,9 +18,9 @@ Parse.Cloud.beforeSave("Batch", function(req, res) {
 	
 		object.set("active", newActive)
 		
-		if(!newActive)
+		if(!newActive && creator)
 			Parse.Cloud.run("batchCompleted", {
-				user: object.get("creator").id
+				user: creator.id
 			})
 	}
 
