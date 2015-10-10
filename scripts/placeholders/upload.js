@@ -34,7 +34,7 @@ fs.readdir(path, function(err, files) {
 			cropheight: 640,
 			quality: 90,
 			flatten: true,
-			gravity: gender == "male" ? "Center" : "North"
+			gravity: "North"
 		}).then(function() {		
 			fs.readFile(tmp + "/" + tmpPath, function(err, data) {
 				var fileData = Array.prototype.slice.call(new Buffer(data), 0)
@@ -49,7 +49,7 @@ fs.readdir(path, function(err, files) {
 					
 					return image.save()
 				}).then(function() {
-					console.log("Image uploaded: " + filePath)
+					console.log("Image uploaded: " + tmpPath)
 				}, function(error) {
 					console.error(error)
 				})

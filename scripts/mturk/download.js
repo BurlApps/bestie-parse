@@ -17,7 +17,11 @@ fs.readFile(path, 'utf8', function(err, data) {
 			})
 		}
 		
-		item[indexes["Answer.selected"]].split("|").forEach(function(answer) {			
+		var answer = item[indexes["Answer.selected"]]
+		
+		if(answer == "none") return
+		
+		answer.split("|").forEach(function(answer) {						
 			var link = item[indexes["Input." + answer]]
 			var split = link.split("/")
 			var downloadPath = split[split.length - 1]

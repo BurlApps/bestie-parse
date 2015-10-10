@@ -1,8 +1,7 @@
 var Parse = require("parse/node")
 var VoterImage = Parse.Object.extend("Image")
 
-Parse.initialize("2umHhGkMh7Gm6dU8rRVgHSPzbW5xOymXzenDx2XC", "hu5nnIlQYKc22ly6JAZE3LxcNTPVYGHdhYAyDYr3")
-//Parse.initialize("q1NZZSGYNxaYIQq5dDNkMlD407fmm2Hq6BoXBzu4", "m736Jb7Z8atZGPSfW7eBnrOKwJNyDDSUFmTOVT5G")
+Parse.initialize("q1NZZSGYNxaYIQq5dDNkMlD407fmm2Hq6BoXBzu4", "m736Jb7Z8atZGPSfW7eBnrOKwJNyDDSUFmTOVT5G")
 
 var query = new Parse.Query(VoterImage) 
 
