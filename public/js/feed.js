@@ -8,6 +8,7 @@ var VotingRoom = function VotingRoom() {
   this.$cards = $(".cards")
   this.$card1 = $(".card.left")
   this.$card2 = $(".card.right")
+  this.$spinner = $(".spinner")
   this.$interests = $(".interests")
   this.$maleInterest = $(".interests .male")
   this.$femaleInterest = $(".interests .female")
@@ -25,6 +26,7 @@ VotingRoom.prototype.init = function() {
 	this.centerCards()
   this.bindEvents()
   this.getCards()
+  this.morphText()
 }
 
 VotingRoom.prototype.bindEvents = function() {
@@ -35,9 +37,17 @@ VotingRoom.prototype.bindEvents = function() {
 	this.$window.keydown(this.keyPressed.bind(this))
 }
 
+VotingRoom.prototype.morphText = function() {
+	$(".js-rotating").Morphext({
+		animation: "flipInX",
+		speed: 2000,
+		separator: ","
+	})
+}
+
 VotingRoom.prototype.centerCards = function() {
-	this.$cards.vAlign().hAlign()
-	this.$cards.find(".vs").vAlign().hAlign()
+	this.$cards.find(".vs").vAlign().hAlign().show()
+	this.$spinner.vAlign().hAlign()
 }
 
 VotingRoom.prototype.keyPressed = function(e) {		
@@ -55,6 +65,18 @@ VotingRoom.prototype.interestSelected = function(gender) {
 	
 	this.$interests.removeClass("male female")
 	this.$interests.addClass(gender)
+	
+	this.$spinner.show()
+	
+	_this.$card1.css({
+		"background-image": "",
+		"opacity": 0.1
+	})
+	
+	_this.$card2.css({
+		"background-image": "",
+		"opacity": 0.1
+	})
 	
 	$.post("/feed/interest", {
 		_csrf: config.csrf,
@@ -93,13 +115,18 @@ VotingRoom.prototype.cardSelected = function($card) {
 		_this.$card1.addClass("results")
 		_this.$card2.addClass("results")
 		
-		if(_this.cards.length > 0) 
+		if(_this.cards.length > 0) {
 			_this.loadCards()
-	}, 600)
-	
-	if(this.cards.length < 5) 
-		_this.getCards()
+		} else {
+			_this.$spinner.show()
+			_this.$card1.css("opacity", 0.1)
+			_this.$card2.css("opacity", 0.1)
+		}
 		
+		if(_this.cards.length < 5) 
+			_this.getCards()
+	}, 600)
+			
 	$.post("/feed/voted", {
 		_csrf: config.csrf,
 		winner: winner == oneID ? oneID : twoID,
@@ -112,9 +139,16 @@ VotingRoom.prototype.cardSelected = function($card) {
 VotingRoom.prototype.getCards = function() {
 	var _this = this
 	
+	if(!_this.loaded) {
+		_this.$spinner.show()
+		_this.$card1.css("opacity", 0.1)
+		_this.$card2.css("opacity", 0.1)
+	}
+	
 	$.post("/feed", {
 		_csrf: config.csrf
 	}, function(cards) {
+		_this.$spinner.hide()
 		_this.cards.push.apply(_this.cards, cards)
 		
 		if(cards.length >= 2 && !_this.loaded)
@@ -143,7 +177,8 @@ VotingRoom.prototype.loadCards = function() {
 VotingRoom.prototype.formatCard = function($card, card) {	
 	$card
 		.css({
-			'background-image': "url('" + card.image + "')"
+			'background-image': "url('" + card.image + "')",
+			"opacity": 1
 		})
 		.attr("data-id", card.id)
 		.removeClass("results")

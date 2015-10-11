@@ -1,10 +1,10 @@
 <% include ../includes/start.ejs %>
-<img class="logo" src="/images/logo.png"/>
-<div class="interests <%= user.interested %>">
-	<img class="male" src="/images/male.png"/>
-	<img class="female" src="/images/female.png"/>
-</div>
-<div class="container">
+<div class="hero">
+	<img class="logo" src="/images/logo.png"/>
+	<div class="interests <%= user.interested %>">
+		<img class="male" src="/images/male.png"/>
+		<img class="female" src="/images/female.png"/>
+	</div>
 	<div class="header">
 		Which photo looks better?
 	</div>
@@ -15,14 +15,26 @@
 		<div class="card right">
 			<div class="results"></div>
 		</div>
+		<div class="clear"></div>
 		<div class="vs">OR</div>
+		<img class="spinner fa-spin" src="/images/spinner.png"/>
+	</div>
+	<div class="keyboard">
 		<div class="keys left">
 			<div class="key">←</div>
 		</div>
 		<div class="keys right">
 			<div class="key">→</div>
 		</div>
+		<div class="clear"></div>
+	</div>
+	<% include ../includes/footer.ejs %>
+</div>
+<div class="information">
+	<div class="header">Bestie</div>
+	<div class="subheader">
+		Find the best photos to post on 
+		<strong class="js-rotating">Instagram, Tinder, Facebook, Twitter</strong>
 	</div>
 </div>
-<% include ../includes/footer.ejs %>
 <% include ../includes/end.ejs %>
