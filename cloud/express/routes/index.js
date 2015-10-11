@@ -1,7 +1,3 @@
-module.exports.home = function(req, res) {
-  res.renderT('home/index')
-}
-
 module.exports.support = function(req, res, next) {
 	res.renderT('home/notfound')
 }

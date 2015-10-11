@@ -97,11 +97,12 @@ app.use(function(req, res, next) {
   }
 })
 // Landing
-app.get('/', routes.core.home)
 app.get('/support', routes.core.support)
 
+app.get('/', routes.auth.login, routes.feed.home)
 app.post('/feed', routes.auth.login, routes.feed.feed)
 app.post('/feed/voted', routes.auth.login, routes.feed.voted)
+app.post('/feed/interest', routes.auth.login, routes.auth.interest)
 
 // Terms & Privacy
 app.get('/terms', routes.core.terms)

@@ -1,6 +1,10 @@
+module.exports.home = function(req, res) {
+  res.renderT('feed/index')
+}
+
 module.exports.feed = function(req, res) {		
 	Parse.Cloud.run("feed", {
-		user: req.session.user.id || req.session.user.objectId
+		user: req.session.user.objectId
 	}).then(function(results) {
 		res.successT(results.map(function(item) {
 			return {
@@ -14,7 +18,7 @@ module.exports.feed = function(req, res) {
 
 module.exports.voted = function(req, res) {		
 	Parse.Cloud.run("setVoted", {
-		user: req.session.user.id || req.session.user.objectId,
+		user: req.session.user.objectId,
 		winner: req.param("winner"),
 		looser: req.param("looser")
 	}).then(res.successT, res.errorT)

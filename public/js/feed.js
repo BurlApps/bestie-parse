@@ -8,10 +8,14 @@ var VotingRoom = function VotingRoom() {
   this.$cards = $(".cards")
   this.$card1 = $(".card.left")
   this.$card2 = $(".card.right")
+  this.$interests = $(".interests")
+  this.$maleInterest = $(".interests .male")
+  this.$femaleInterest = $(".interests .female")
 	
 	// Variables
 	this.cards = []
 	this.loaded = false
+	this.locked = false
 	
 	// Initalize
   this.init()	
@@ -26,6 +30,8 @@ VotingRoom.prototype.init = function() {
 VotingRoom.prototype.bindEvents = function() {
 	this.$card1.click(this.cardSelected.bind(this, this.$card1))
 	this.$card2.click(this.cardSelected.bind(this, this.$card2))
+	this.$maleInterest.click(this.interestSelected.bind(this, "male"))
+  this.$femaleInterest.click(this.interestSelected.bind(this, "female"))
 	this.$window.keydown(this.keyPressed.bind(this))
 }
 
@@ -44,15 +50,37 @@ VotingRoom.prototype.keyPressed = function(e) {
 	}
 }
 
+VotingRoom.prototype.interestSelected = function(gender) {
+	var _this = this
+	
+	this.$interests.removeClass("male female")
+	this.$interests.addClass(gender)
+	
+	$.post("/feed/interest", {
+		_csrf: config.csrf,
+		interest: gender
+	}, function(res) {
+		if(!res.success) 
+			return alert("Failed to update :(")
+		
+		_this.cards = []
+		_this.loaded = false
+		_this.getCards()
+	})
+}
+
 VotingRoom.prototype.cardSelected = function($card) {
 	var _this = this
 	var winner = $card.attr("data-id")
 	var oneID = _this.$card1.attr("data-id")
 	var twoID = _this.$card2.attr("data-id")
 	
-	$card.addClass("active")
-	
+	if(_this.locked) return
+		
 	_this.loaded = false
+	_this.locked = true
+	
+	$card.addClass("active")
 	_this.$card1.addClass("results")
 	_this.$card2.addClass("results")
 	
@@ -61,6 +89,7 @@ VotingRoom.prototype.cardSelected = function($card) {
 	}, 100)
 	
 	setTimeout(function() {
+		_this.locked = false
 		_this.$card1.addClass("results")
 		_this.$card2.addClass("results")
 		
@@ -76,6 +105,8 @@ VotingRoom.prototype.cardSelected = function($card) {
 		winner: winner == oneID ? oneID : twoID,
 		looser: winner != oneID ? oneID : twoID
 	})
+	
+	mixpanel.track("Web.Set.Voted")
 }
 
 VotingRoom.prototype.getCards = function() {
