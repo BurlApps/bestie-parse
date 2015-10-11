@@ -95,7 +95,7 @@ VotingRoom.prototype.cardSelected = function($card) {
 		
 		if(_this.cards.length > 0) 
 			_this.loadCards()
-	}, 500)
+	}, 600)
 	
 	if(this.cards.length < 5) 
 		_this.getCards()
