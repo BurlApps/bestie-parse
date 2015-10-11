@@ -28,6 +28,11 @@ module.exports.interest = function(req, res, next) {
   user.set("interested", req.param("interest"))
 
   user.save().then(function() {
+	  var tmp = JSON.parse(JSON.stringify(user))
+	  
+		req.session.user = tmp
+		res.locals.user = tmp
+		
 	  res.successT()
   }, res.errorT)
 }
