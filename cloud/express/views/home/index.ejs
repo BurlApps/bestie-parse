@@ -1,10 +1,32 @@
 <% include ../includes/start.ejs %>
+<div id="rays"></div>
+<img class="logo" src="/images/logo.png"/>
 <div class="container">
-	<img class="header" src="/images/logo.png"/>
+	<div class="header">
+		Which photo looks better?
+	</div>
 	<div class="cards">
-		<div class="card left" style="background-image: url(http://goo.gl/wzYIWf)"></div>
+		<div class="card left">
+			<div class="results"></div>
+		</div>
+		<div class="card right">
+			<div class="results"></div>
+		</div>
 		<div class="vs">OR</div>
-		<div class="card right" style="background-image: url(http://goo.gl/wzYIWf)"></div>
+		<div class="keys left">
+			<div class="key">1</div>
+			<div class="key">A</div>
+			<div class="key">W</div>
+			<div class="key">←</div>
+			<div class="key">↑</div>
+		</div>
+		<div class="keys right">
+			<div class="key">2</div>
+			<div class="key">D</div>
+			<div class="key">S</div>
+			<div class="key">→</div>
+			<div class="key">↓</div>
+		</div>
 	</div>
 </div>
 <% include ../includes/footer.ejs %>

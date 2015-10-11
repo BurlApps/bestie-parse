@@ -6,7 +6,7 @@
 
 .container .message {
   font-family: Bariol, sans-serif;
-  color: #fff;
+  color: RGBA(31, 150, 243, 1);
   text-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
   font-size: 125px;
   font-weight: 900;
@@ -15,7 +15,7 @@
 
 .container .submessage {
   font-family: Bariol, sans-serif;
-  color: #fff;
+  color: RGBA(31, 150, 243, 1);
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
   font-size: 40px;
   font-weight: 900;

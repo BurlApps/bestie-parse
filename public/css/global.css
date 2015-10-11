@@ -95,21 +95,15 @@ input, select, textarea {
   width: 100%;
   text-align: center;
   padding: 25px;
-  font-size: 18px;
-  color: rgba(255, 255, 255, 0.8);
 
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-.footer a {
-  color: #2096F3;
-  text-decoration: none;
-  padding: 0 10px;
-  font-weight: bold;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.01);
-  font-family: Bariol, sans-serif;
+.footer img {
+	height: 50px;
+	margin: 0 10px;
 }
 
 .footer a:hover {

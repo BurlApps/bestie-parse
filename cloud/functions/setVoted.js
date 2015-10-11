@@ -11,6 +11,15 @@ Parse.Cloud.define("setVoted", function(req, res) {
 	
 	var date = new Date()
 	
+	if(!user) {
+		if(req.params.user) {
+			user = new Parse.User()
+			user.id = req.params.user
+		} else {
+			return res.success()
+		}
+	}
+	
 	winner.fetch().then(function() {
 		return loser.fetch()
 	}).then(function() {

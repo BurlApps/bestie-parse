@@ -8,6 +8,8 @@ Parse.Cloud.useMasterKey()
 // Routes
 var routes = {
   core: require("cloud/express/routes/index"),
+  auth: require("cloud/express/routes/auth"),
+  feed: require("cloud/express/routes/feed"),
 }
 
 // Global app configuration section
@@ -38,56 +40,68 @@ app.use(function(req, res, next) {
 
   // Error Shorcut
   res.errorT = function(error) {
-	  console.error(error)
-	  
-    if(typeof error != "string")
+    if(typeof error != "string") {
       error = error.description || error.message || "An error occurred"
+    }
+
+    console.error(error)
 
     res.json({
       success: false,
+      status: 1,
       message: error
     })
   }
 
   // Render Shorcut
   res.renderT = function(template, data) {
+    // Tracking
+    Parse.Analytics.track('pageView', {
+      link: req.url,
+      method: req.route.method
+    })
+
     data = data || {}
     data.template = data.template || template
+    data.user = data.user || req.session.user
+    data.tutor = data.tutor || req.session.tutor
     res.render(template, data)
   }
 
   // Auth
-  req.basicAuth = express.basicAuth
   res.locals.csrf = req.session._csrf
 
   // Locals
   res.locals.host = req.session.host || ("http://" + req.host)
   res.locals.url = res.locals.host + req.url
-  res.locals.path = req.url
-  res.locals.user = null
+  res.locals.user = req.session.user
+  res.locals.itunesApp = req.session.itunesApp || ""
   res.locals.mixpanelToken = req.session.mixpanelToken
   res.locals.random = random
   res.locals.config = {}
   res.locals.support = false
 
-  if(!(req.session.appliedSettings !== true || !req.session.mixpanelToken)) 
-  	return next()
-  
-  Parse.Config.get().then(function(settings) {
-    req.session.appliedSettings = true
-    req.session.host = settings.get("host")
-    req.session.mixpanelToken = settings.get("mixpanelToken")
-    res.locals.host = req.session.host
-    res.locals.url = res.locals.host + req.url
-    res.locals.account = req.session.account
-    res.locals.mixpanelToken = req.session.mixpanelToken
+  if(req.session.appliedSettings !== true || !req.session.mixpanelToken) {
+    Parse.Config.get().then(function(settings) {
+	    req.session.appliedSettings = true
+	    req.session.itunesApp = settings.get("itunesId")
+	    req.session.host = settings.get("host")
+      req.session.mixpanelToken = settings.get("mixpanelToken")
+	    res.locals.host = req.session.host
+      res.locals.itunesApp = req.session.itunesApp
+      res.locals.mixpanelToken = req.session.mixpanelToken
+      next()
+    })
+  } else {
     next()
-  })
+  }
 })
-
 // Landing
 app.get('/', routes.core.home)
 app.get('/support', routes.core.support)
+
+app.post('/feed', routes.auth.login, routes.feed.feed)
+app.post('/feed/voted', routes.auth.login, routes.feed.voted)
 
 // Terms & Privacy
 app.get('/terms', routes.core.terms)

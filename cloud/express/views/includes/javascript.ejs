@@ -12,14 +12,10 @@ mixpanel.init("<%= mixpanelToken %>");
 <% if(user != null && user.id != null) { %>
   mixpanel.identify("<%= user.id %>")
   mixpanel.people.set({
-    "ID": "<%= user.id %>",
-    "$name": <%- user.get("name") ? ('"' + user.get("name") + '"') : "null" %>,
-    "$email": <%- user.get("email") ? ('"' + user.get("email") + '"') : "null" %>
+    "ID": "<%= user.id %>"
   })
   mixpanel.register({
-    "User ID": "<%= user.id %>",
-    "User Name": <%- user.get("name") ? ('"' + user.get("name") + '"') : "null" %>,
-    "User Email": <%- user.get("email") ? ('"' + user.get("email") + '"') : "null" %>
+    "User ID": "<%= user.id %>"
   });
 <% } %>
 
