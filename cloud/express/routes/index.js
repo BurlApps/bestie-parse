@@ -24,8 +24,14 @@ module.exports.sms = function(req, res) {
 	}
 }
 
+module.exports.press = function(req, res) {
+  Parse.Config.get().then(function(config) {
+	  res.redirect(config.get("pressKit").url())
+	}, res.errorT)
+}
+
 module.exports.support = function(req, res, next) {
-	res.renderT('home/notfound')
+	res.redirect("/")
 }
 
 module.exports.notfound = function(req, res) {

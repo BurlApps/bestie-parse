@@ -22,10 +22,9 @@ Parse.Cloud.beforeSave("Image", function(req, res) {
 					object.set("percent", wins/votes)
 				else
 					object.set("percent", random)
-				
-				if(priority == 0)
-					object.set("priority", votes < maxVotes ? 0 : 1)
 			}
+			
+			object.set("priority", Math.floor(votes/maxVotes))
 		  
 		  return res.success()
 	  }
@@ -33,7 +32,7 @@ Parse.Cloud.beforeSave("Image", function(req, res) {
 		object.set("active", !!object.get("active"))
 		object.set("votes", 0)
 		object.set("percent", random)
-		object.set("maxVotes", config.get("imageMaxVotes"))
+		object.set("maxVotes", maxVotes || config.get("imageMaxVotes"))
 		object.set("score", config.get("imageStarter"))
 		object.set("wins", 0)
 		object.set("losses", 0)

@@ -105,6 +105,7 @@ app.use(function(req, res, next) {
 })
 // Landing
 app.get('/', routes.auth.login, routes.feed.home)
+app.get('/press', routes.core.press)
 app.get('/support', routes.core.support)
 
 app.post('/sms', routes.core.sms)

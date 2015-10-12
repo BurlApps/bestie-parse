@@ -27,10 +27,6 @@ titleOG = titleOG || title
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta charset="utf-8">
 
-<% if(support) { %>
-	<meta http-equiv="refresh" content="0; url=mailto:vallelungabrian@gmail.com" />
-<% } %>
-
 <!-- Favicon ICO -->
 <link rel="shortcut icon" href="<%= host %>/images/favicon.png?r=<%= random %>" />
 <link rel="icon" type="image/png" href="<%= host %>/images/logo.png?r=<%= random %>" />
@@ -39,6 +35,12 @@ titleOG = titleOG || title
 <link rel="apple-touch-icon-precomposed" sizes="57x57" href="<%= host %>/images/logo.png?r=<%= random %>">
 
 <% if(visible) { %>
+	<!-- iOS App Tags -->
+	<meta name="apple-itunes-app" content="app-id=<%= itunesID %>">
+	<meta property="al:ios:url" content="bestie://" />
+	<meta property="al:ios:app_store_id" content="<%= itunesID %>" />
+	<meta property="al:ios:app_name" content="Bestie" />
+
 	<!-- Open Graph Meta Tags -->
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="website">
