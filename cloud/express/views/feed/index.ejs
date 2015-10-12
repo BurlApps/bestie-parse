@@ -5,7 +5,7 @@
 		<div class="headers left">
 			<div class="header">Bestie</div>
 			<div class="subheader">
-				Download to find your best photos to post on 
+				Download and find your best photos to post on 
 				<strong class="js-rotating">Instagram, Tinder, Facebook, Twitter</strong>
 			</div>
 			<form class="form" method="POST" action="/sms">
@@ -87,10 +87,6 @@
 	<div class="scroll-down"><span class="fa fa-angle-down"></span></div>
 </div>
 <div class="voting">
-	<div class="interests <%= user.interested %>">
-		<img class="male" src="/images/male.png"/>
-		<img class="female" src="/images/female.png"/>
-	</div>
 	<div class="header">
 		Which photo looks better?
 	</div>
@@ -116,6 +112,10 @@
 			<div class="key">→</div>
 		</div>
 		<div class="clear"></div>
+	</div>
+	<div class="interests <%= user.interested %>">
+		<img class="male" src="/images/male.png"/>
+		<img class="female" src="/images/female.png"/>
 	</div>
 </div>
 <div class="contact">

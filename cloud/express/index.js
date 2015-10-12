@@ -67,6 +67,11 @@ app.use(function(req, res, next) {
     data.tutor = data.tutor || req.session.tutor
     res.render(template, data)
   }
+  
+  if(req.url.indexOf("/images/") === 0 || req.url.indexOf("/css/") === 0) {
+    res.setHeader("Cache-Control", "public, max-age=2592000");
+    res.setHeader("Expires", new Date(Date.now() + 2592000000).toUTCString());
+  }
 
   // Auth
   res.locals.csrf = req.session._csrf
@@ -107,6 +112,8 @@ app.use(function(req, res, next) {
 app.get('/', routes.auth.login, routes.feed.home)
 app.get('/press', routes.core.press)
 app.get('/support', routes.core.support)
+app.get('/d', routes.core.download)
+app.get('/download', routes.core.download)
 
 app.post('/sms', routes.core.sms)
 app.post('/feed', routes.auth.login, routes.feed.feed)

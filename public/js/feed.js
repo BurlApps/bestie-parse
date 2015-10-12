@@ -65,7 +65,7 @@ VotingRoom.prototype.formSubmitted = function(e) {
 VotingRoom.prototype.morphText = function() {
 	$(".js-rotating").Morphext({
 		animation: "flipInX",
-		speed: 2000,
+		speed: 3000,
 		separator: ","
 	})
 }

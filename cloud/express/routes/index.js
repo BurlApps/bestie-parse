@@ -30,6 +30,19 @@ module.exports.press = function(req, res) {
 	}, res.errorT)
 }
 
+module.exports.download = function(req, res) {
+  Parse.Config.get().then(function(config) {
+	  var ua = req.headers['user-agent']
+	  
+	  if (/Android/.test(ua))
+			res.redirect(config.get("androidURL"))
+		
+		else
+			res.redirect(config.get("itunesURL"))
+	
+	}, res.errorT)
+}
+
 module.exports.support = function(req, res, next) {
 	res.redirect("/")
 }
