@@ -15,7 +15,7 @@ module.exports.sms = function(req, res) {
 	      body: [
 		      "Welcome to Bestie! Download the app ",
 		      "and find the best photos of you. ",
-		      config.get("host"), "/download"
+		      config.get("downloadURL")
 	      ].join("")
 		  })
 		}).then(res.successT, res.errorT)
