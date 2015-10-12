@@ -1,12 +1,101 @@
 <% include ../includes/start.ejs %>
-<div class="hero">
+<div class="information">
 	<img class="logo" src="/images/logo.png"/>
+	<div class="action">
+		<div class="headers left">
+			<div class="header">Bestie</div>
+			<div class="subheader">
+				Find your best photos to<br>post on 
+				<strong class="js-rotating">Instagram, Tinder, Facebook, Twitter</strong>
+			</div>
+			<form class="form" method="POST" action="/sms">
+				<input type="hidden" name="_csrf" value="<%= csrf %>"/>
+				<input type="phone" class="input left" name="phone" placeholder="Enter your cell # 3108892544"/>
+				<input type="submit" class="button right" value="Submit" />
+				<div class="clear"></div>
+				<div class="message">Thanks! We've sent a link to your phone.</div>
+			</form>
+		</div>
+		<div class="screenshots right">
+			<div class="shots left">
+				<div class="overlay"></div>
+				<img class="shot" src="/images/girl/1.jpg"/>
+				<img class="shot" src="/images/girl/2.jpg"/>
+			</div>
+			<div class="screenshot">
+				<img class="frame" src="/images/frame-ios.png"/>
+				<video class="video" autoplay="" loop="" 
+					poster="//thumbs.gfycat.com/BothHonorableFruitfly-poster.jpg">
+						
+						<source id="webmsource" src="//zippy.gfycat.com/BothHonorableFruitfly.webm" type="video/webm">
+						<source id="mp4source" src="//fat.gfycat.com/BothHonorableFruitfly.mp4" type="video/mp4">
+            <img src="//giant.gfycat.com/BothHonorableFruitfly.gif">
+        </video>
+			</div>
+			<div class="shots right">
+				<div class="overlay"></div>
+				<img class="shot" src="/images/girl/3.jpg"/>
+				<img class="shot" src="/images/girl/4.jpg"/>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="info">
+		<div class="features left">
+			<div class="feature">
+				<div class="title instagram">
+					<span class="fa fa-instagram"></span>
+					Go viral on Instagram
+				</div>
+				<div class="message">
+					Our community finds your best pictures so you don’t have to make the hard choices.
+				</div>
+			</div>
+			<div class="feature">
+				<div class="title instagram">
+					<span class="fa fa-heartbeat"></span>
+					Need for speed
+				</div>
+				<div class="message">
+					Our system is fast and accurate, giving you quick results when you need them.
+				</div>
+			</div>
+		</div>
+		<div class="features right">
+			<div class="feature">
+				<div class="title tinder">
+					<img class="fa" src="/images/tinder.png"/>
+					More matches on Tinder
+				</div>
+				<div class="message">
+					Get the photo that makes THE killer first impression.
+				</div>
+			</div>
+			<div class="feature">
+				<div class="title tinder">
+					<span class="fa fa-ban"></span>
+					No login
+				</div>
+				<div class="message">
+					You are anonymous. No one will know which photos you have voted on or uploaded.
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="scroll-down"><span class="fa fa-angle-down"></span></div>
+</div>
+<div class="hero">
 	<div class="interests <%= user.interested %>">
 		<img class="male" src="/images/male.png"/>
 		<img class="female" src="/images/female.png"/>
 	</div>
 	<div class="header">
 		Which photo looks better?
+	</div>
+	<div class="subheader">
+		Share your opinion with the community
 	</div>
 	<div class="cards">
 		<div class="card left">
@@ -28,13 +117,8 @@
 		</div>
 		<div class="clear"></div>
 	</div>
-	<% include ../includes/footer.ejs %>
 </div>
-<div class="information">
-	<div class="header">Bestie</div>
-	<div class="subheader">
-		Find the best photos to post on 
-		<strong class="js-rotating">Instagram, Tinder, Facebook, Twitter</strong>
-	</div>
-</div>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55b677dd55cb12c6" async="async"></script>
+<% include ../includes/footer.ejs %>
 <% include ../includes/end.ejs %>

@@ -12,6 +12,9 @@ var VotingRoom = function VotingRoom() {
   this.$interests = $(".interests")
   this.$maleInterest = $(".interests .male")
   this.$femaleInterest = $(".interests .female")
+  this.$form = $(".form")
+  this.$input = $(".form .input")
+  this.$button = $(".form .button")
 	
 	// Variables
 	this.cards = []
@@ -34,7 +37,29 @@ VotingRoom.prototype.bindEvents = function() {
 	this.$card2.click(this.cardSelected.bind(this, this.$card2))
 	this.$maleInterest.click(this.interestSelected.bind(this, "male"))
   this.$femaleInterest.click(this.interestSelected.bind(this, "female"))
+  this.$form.submit(this.formSubmitted.bind(this))
 	this.$window.keydown(this.keyPressed.bind(this))
+}
+
+VotingRoom.prototype.formSubmitted = function(e) {
+	e.preventDefault()
+	e.stopPropagation()
+	
+	var _this = this
+	var message = this.$form.find(".message").fadeOut(200)
+	
+	$.post("/sms", {
+		_csrf: config.csrf,
+		number: this.$input.val()
+	}, function(res) {
+		if(res.success) {
+			mixpanel.track("Web.SMS.Sent")
+			message.fadeIn(200)
+			_this.$input.val("")
+		} else {
+			alert(res.message)
+		}
+	})
 }
 
 VotingRoom.prototype.morphText = function() {

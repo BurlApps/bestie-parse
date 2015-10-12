@@ -10,24 +10,29 @@ Parse.Cloud.beforeSave("Image", function(req, res) {
 		var maxVotes = object.get("maxVotes")
 		var opponents = object.get("opponents")
 		var multiplier = config.get("imageMultiplier")
+		var priority = config.get("priority")
 		var score = Math.ceil((opponents + (multiplier * (wins - losses))) / Math.max(votes, 1))
+		var random = Math.random() * 0.1 + 0.65
 	
-		
-	  if(!object.isNew()) {
-		  if(active) {
-		  	object.set("score", score)
-				object.set("priority", votes < maxVotes ? 0 : 1)
+	  if(!object.isNew()) {			
+			if(votes > 0) {
+				object.set("score", score)
+				
+				if(votes > 3)
+					object.set("percent", wins/votes)
+				else
+					object.set("percent", random)
+				
+				if(priority == 0)
+					object.set("priority", votes < maxVotes ? 0 : 1)
 			}
-			
-			if(votes > 0)
-				object.set("percent", wins/votes)
 		  
 		  return res.success()
 	  }
 		
 		object.set("active", !!object.get("active"))
 		object.set("votes", 0)
-		object.set("percent", 0)
+		object.set("percent", random)
 		object.set("maxVotes", config.get("imageMaxVotes"))
 		object.set("score", config.get("imageStarter"))
 		object.set("wins", 0)

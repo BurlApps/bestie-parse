@@ -1,3 +1,29 @@
+var Twilio = require('twilio')
+
+module.exports.sms = function(req, res) {
+  var phone = req.param("number").match(/\d/g)
+
+	if(phone && phone.length > 0) {
+	  Parse.Config.get().then(function(config) {
+		  var sid = "ACdf6e01e0d0cd943e9aa2a45d6117d624"
+		  var token = "addf9c4db22654ab9b978999e319dd70"
+	    var client  = Twilio(sid, token)
+
+		  return client.sendSms({
+	      to: "+1" + phone.join(""),
+	      from: "+18312004372",
+	      body: [
+		      "Welcome to Bestie! Download the app ",
+		      "and find the best photos of you. ",
+		      config.get("host"), "/download"
+	      ].join("")
+		  })
+		}).then(res.successT, res.errorT)
+	} else {
+		res.errorT("Invalid phone number :(")
+	}
+}
+
 module.exports.support = function(req, res, next) {
 	res.renderT('home/notfound')
 }
