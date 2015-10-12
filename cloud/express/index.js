@@ -75,8 +75,10 @@ app.use(function(req, res, next) {
   res.locals.host = req.session.host || ("http://" + req.host)
   res.locals.url = res.locals.host + req.url
   res.locals.user = req.session.user
-  res.locals.itunesApp = req.session.itunesApp || ""
-  res.locals.mixpanelToken = req.session.mixpanelToken
+  res.locals.itunesID = req.session.itunesID || ""
+	res.locals.androidID = req.session.androidID || ""
+	res.locals.androidURL = req.session.androidURL || ""
+  res.locals.mixpanelToken = req.session.mixpanelToken || ""
   res.locals.random = random
   res.locals.config = {}
   res.locals.support = false
@@ -84,11 +86,16 @@ app.use(function(req, res, next) {
   if(req.session.appliedSettings !== true || !req.session.mixpanelToken) {
     Parse.Config.get().then(function(settings) {
 	    req.session.appliedSettings = true
-	    req.session.itunesApp = settings.get("itunesId")
+	    req.session.itunesID = settings.get("itunesId")
+	    req.session.androidID = settings.get("androidId")
+	    req.session.androidURL = settings.get("androidURL")
 	    req.session.host = settings.get("host")
       req.session.mixpanelToken = settings.get("mixpanelToken")
+	    
 	    res.locals.host = req.session.host
-      res.locals.itunesApp = req.session.itunesApp
+      res.locals.itunesID = req.session.itunesID
+	    res.locals.androidID = req.session.androidID
+	    res.locals.androidURL = req.session.androidURL
       res.locals.mixpanelToken = req.session.mixpanelToken
       next()
     })

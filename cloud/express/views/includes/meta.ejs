@@ -4,12 +4,12 @@ titleOG = null
 siteName = "Opin"
 visible = true
 description = [
-
+	"Find Your Best To Post On Instagram"
 ].join("")
 
 switch(template) {
   case "feed/index":
-    title = "Bestie - Find Yout Best To Post On Instagram"
+    title = "Bestie - Find Your Best To Post On Instagram"
     break
 
   case "home/notfound":
@@ -57,12 +57,16 @@ titleOG = titleOG || title
 	<meta itemprop="image" content="<%= host %>/images/graph.jpg?r=<%= random %>">
 
 	<!-- Twitter Card data -->
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:site" content="<%= host %>">
-	<meta name="twitter:creator" content="@bestieduck">
-	<meta name="twitter:domain" content="<%= host %>">
-	<meta name="twitter:title" content="<%= titleOG %>">
-	<meta name="twitter:description" content="<%= description %>">
+	<meta name="twitter:card" content="app">
+	<meta name="twitter:site" content="@BestieDuck">
+	<meta name="twitter:text:title" content="<%= titleOG %>">
+	<meta name="twitter:text:description" content="<%= description %>">
+	<meta name="twitter:app:name:iphone" content="Bestie">
+	<meta name="twitter:app:id:iphone" content="<%= itunesID %>">
+	<meta name="twitter:app:url:iphone" content="bestie://">
+	<meta name="twitter:app:name:googleplay" content="Bestie">
+	<meta name="twitter:app:id:googleplay" content="<%= androidID %>">
+	<meta name="twitter:app:url:googleplay" content="<%= androidURL %>">
 	<meta name="twitter:image" content="<%= host %>/images/graph.jpg?r=<%= random %>">
   <meta name="twitter:image:width" content="1200" />
   <meta name="twitter:image:height" content="630" />

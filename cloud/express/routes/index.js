@@ -20,7 +20,7 @@ module.exports.sms = function(req, res) {
 		  })
 		}).then(res.successT, res.errorT)
 	} else {
-		res.errorT("Invalid phone number :(")
+		res.errorT("Please enter a valid number")
 	}
 }
 
