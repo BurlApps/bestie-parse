@@ -77,7 +77,7 @@ VotingRoom.prototype.centerCards = function() {
 }
 
 VotingRoom.prototype.keyPressed = function(e) {
-	if(this.$input.is(":focus")) return false
+	if(this.$input.is(":focus")) return true
 	
 	if(37 == e.keyCode)
 		this.cardSelected(this.$card1)
