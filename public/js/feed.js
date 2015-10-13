@@ -79,13 +79,12 @@ VotingRoom.prototype.centerCards = function() {
 VotingRoom.prototype.keyPressed = function(e) {
 	if(this.$input.is(":focus")) return false
 	
-	if([65, 49, 87, 37, 38].indexOf(e.keyCode) > -1) {
+	if(37 == e.keyCode)
 		this.cardSelected(this.$card1)
-	}
 	
-	if([68, 50, 83, 39, 40].indexOf(e.keyCode) > -1) {
+	else if(39 == e.keyCode)
 		this.cardSelected(this.$card2)
-	}
+
 }
 
 VotingRoom.prototype.interestSelected = function(gender) {
