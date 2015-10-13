@@ -19,15 +19,18 @@ mixpanel.init("<%= mixpanelToken %>");
   });
 <% } %>
 
+mixpanel.people.set({
+	"Tester": <%= tester %>
+})
+
+mixpanel.register({
+  "Tester": <%= tester %>
+});
+
 mixpanel.track('Web.Page.View', {
   'Name' : "<%= title %>",
   'URL' : window.location.pathname,
   "Template": "<%= template %>"
-})
-
-mixpanel.track('Web: <%= template %>', {
-  'Name' : "<%= title %>",
-  'URL' : window.location.pathname
 })
 </script>
 <!-- end Mixpanel -->

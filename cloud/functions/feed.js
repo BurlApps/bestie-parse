@@ -39,7 +39,9 @@ Parse.Cloud.define("feed", function(req, res) {
 			query.descending("objectId")
 			
 		query.find(function(images) {			
-			res.success(images)
+			res.success(images.sort(function() {
+			  return Math.random() - Math.random();
+			}))
 		}, res.error)
 	})
 })

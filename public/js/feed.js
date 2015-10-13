@@ -54,6 +54,7 @@ VotingRoom.prototype.formSubmitted = function(e) {
 	}, function(res) {
 		if(res.success) {
 			mixpanel.track("Web.SMS.Sent")
+			
 			message.fadeIn(200)
 			_this.$input.val("")
 		} else {
@@ -75,7 +76,9 @@ VotingRoom.prototype.centerCards = function() {
 	this.$spinner.vAlign().hAlign()
 }
 
-VotingRoom.prototype.keyPressed = function(e) {		
+VotingRoom.prototype.keyPressed = function(e) {
+	if(this.$input.is(":focus")) return false
+	
 	if([65, 49, 87, 37, 38].indexOf(e.keyCode) > -1) {
 		this.cardSelected(this.$card1)
 	}
@@ -109,6 +112,10 @@ VotingRoom.prototype.interestSelected = function(gender) {
 	}, function(res) {
 		if(!res.success) 
 			return alert("Failed to update :(")
+			
+			mixpanel.track("Web.User.Interest.Changed", {
+				"Interested": gender
+			})
 		
 		_this.cards = []
 		_this.loaded = false

@@ -84,11 +84,12 @@ app.use(function(req, res, next) {
 	res.locals.androidID = req.session.androidID || ""
 	res.locals.androidURL = req.session.androidURL || ""
   res.locals.mixpanelToken = req.session.mixpanelToken || ""
+  res.locals.tester = req.session.tester || 1
   res.locals.random = random
   res.locals.config = {}
   res.locals.support = false
 
-  if(req.session.appliedSettings !== true || !req.session.mixpanelToken) {
+  if(req.session.appliedSettings !== true || !req.session.tester) {
     Parse.Config.get().then(function(settings) {
 	    req.session.appliedSettings = true
 	    req.session.itunesID = settings.get("itunesId")
@@ -96,7 +97,9 @@ app.use(function(req, res, next) {
 	    req.session.androidURL = settings.get("androidURL")
 	    req.session.host = settings.get("host")
       req.session.mixpanelToken = settings.get("mixpanelToken")
+      req.session.tester = Math.floor(Math.random() * 4) + 1 
 	    
+	    res.locals.tester = req.session.tester
 	    res.locals.host = req.session.host
       res.locals.itunesID = req.session.itunesID
 	    res.locals.androidID = req.session.androidID
@@ -114,6 +117,8 @@ app.get('/press', routes.core.press)
 app.get('/support', routes.core.support)
 app.get('/d', routes.core.download)
 app.get('/download', routes.core.download)
+app.get('/ios', routes.core.ios)
+app.get('/android', routes.core.android)
 
 app.post('/sms', routes.core.sms)
 app.post('/feed', routes.auth.login, routes.feed.feed)

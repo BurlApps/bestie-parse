@@ -5,8 +5,20 @@
 		<div class="headers left">
 			<div class="header">Bestie</div>
 			<div class="subheader">
-				Download and find your best photos to post on 
-				<strong class="js-rotating">Instagram, Tinder, Facebook, Twitter</strong>
+				<% if(tester < 3) { %>
+					Download and find your best photos to post on 
+					<% if(tester == 1) { %>
+						<strong class="js-rotating">Instagram, Tinder, Facebook, Twitter</strong>
+					<% } else { %>
+						<strong>Instagram</strong>
+					<% } %>
+				<% } else if(tester == 3) { %>
+					Find exactly what your
+					best photo is. <strong>Download & find out!</strong>
+				<% } else { %>
+					Never second guess what<br>
+					next to post on <strong>Instagram</strong>!
+				<% } %>
 			</div>
 			<form class="form" method="POST" action="/sms">
 				<input type="hidden" name="_csrf" value="<%= csrf %>"/>

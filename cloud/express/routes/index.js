@@ -43,6 +43,18 @@ module.exports.download = function(req, res) {
 	}, res.errorT)
 }
 
+module.exports.ios = function(req, res) {
+  Parse.Config.get().then(function(config) {	  
+	  res.redirect(config.get("itunesURL"))
+	}, res.errorT)
+}
+
+module.exports.android = function(req, res) {
+  Parse.Config.get().then(function(config) {
+	  res.redirect(config.get("androidURL"))
+	}, res.errorT)
+}
+
 module.exports.support = function(req, res, next) {
 	res.redirect("/")
 }
