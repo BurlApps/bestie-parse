@@ -198,7 +198,7 @@
 }
 
 .information .form .input {
-	width: 380px;
+	width: 75%;
 	padding: 15px;
 	border: solid 1px rgba(0, 0, 0, 0.1);
 	border-bottom-width: 3px;
@@ -207,10 +207,13 @@
 	font-weight: bold;
 	font-family: Bariol;
 	color: #2096F3;
+	display: block;
+	
+	-webkit-appearance: none;
 }
 
 .information .form .button {
-	width: 110px;
+	width: 23%;
 	padding: 15px;
 	background: #0F94F6;
 	border: solid 1px rgba(0, 0, 0, 0.1);
@@ -221,6 +224,9 @@
 	font-family: Bariol;
 	color: #fff;
 	cursor: pointer;
+	display: block;
+	
+	-webkit-appearance: none;
 	
 	-webkit-transition: -webkit-transform 0.25s;
   transition: transform 0.25s;
@@ -257,6 +263,7 @@
 	margin-top: 90px;
 	border-radius: 4px;
 	overflow: hidden;
+	width: 35%;
 	box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.4);
 }
 
@@ -374,7 +381,93 @@ body > .footer {
 	padding: 0;	
 }
 
+body > .footer .tooltip {
+	position: relative;
+	padding: 8px 15px;
+	border: solid 1px #E6E6E6;
+	border-bottom-width: 3px;
+	border-radius: 5px;
+	font-size: 22px;
+	font-weight: bold;
+	font-family: Bariol;
+	color: #2096F3;
+	display: inline-block;
+	background: #fff;
+	margin-bottom: 8px;
+}
+
+body > .footer .tooltip:before {
+	position: absolute;
+	bottom: -9px;
+	left: 50%;
+	margin-left: -3.5px;
+	width: 0; 
+	height: 0; 
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-top: 7px solid #E6E6E6;
+	content: "";
+}
+
 body > .footer img {
 	display: block;
 	margin-top: 5px;
+}
+
+@media (max-width: 500px) {
+	body, html {
+		width: 100% !important;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+	
+	.information {
+		padding: 0 20px;
+		box-sizing: border-box;
+	}
+	
+	.information .action {
+		width: 100%;
+	}
+	
+	.information .info,
+	.information .info .features,
+	.information .info .features .feature,
+	.information .action .headers,
+	.information .screenshots {
+		width: 100%;
+		float: none;
+	}
+	
+	.information .screenshots {
+		margin-top: 20px;
+	}
+	
+	.information .action .header {
+		margin-top: 0;
+	}
+	
+	body > .footer {
+		position: relative;
+		bottom: 0;
+		left: 0;
+	}
+	
+	body > .footer .tooltip {
+		position: relative;
+	}
+	
+	body > .footer img {
+		margin: 20px 10px;
+		display: inline-block;
+	}
+	
+	.voting,
+	.information .scroll-down,
+	.information .logo,
+  .information .action .form,
+  body > .footer .tooltip,
+  .contact  {
+	  display: none;
+  }
 }

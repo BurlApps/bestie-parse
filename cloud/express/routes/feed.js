@@ -16,10 +16,10 @@ module.exports.feed = function(req, res) {
 	}, res.errorT)
 }
 
-module.exports.voted = function(req, res) {		
+module.exports.voted = function(req, res) {			
 	Parse.Cloud.run("setVoted", {
 		user: req.session.user.objectId,
 		winner: req.param("winner"),
-		looser: req.param("looser")
+		loser: req.param("loser")
 	}).then(res.successT, res.errorT)
 }

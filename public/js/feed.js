@@ -32,7 +32,7 @@ VotingRoom.prototype.init = function() {
   this.morphText()
 }
 
-VotingRoom.prototype.bindEvents = function() {
+VotingRoom.prototype.bindEvents = function() {	
 	this.$card1.click(this.cardSelected.bind(this, this.$card1))
 	this.$card2.click(this.cardSelected.bind(this, this.$card2))
 	this.$maleInterest.click(this.interestSelected.bind(this, "male"))
@@ -161,7 +161,7 @@ VotingRoom.prototype.cardSelected = function($card) {
 	$.post("/feed/voted", {
 		_csrf: config.csrf,
 		winner: winner == oneID ? oneID : twoID,
-		looser: winner != oneID ? oneID : twoID
+		loser: winner != oneID ? oneID : twoID
 	})
 	
 	mixpanel.track("Web.Set.Voted")

@@ -19,7 +19,36 @@
   font-weight: 900;
 }
 
-.footer {
+body > .footer {
 	position: fixed;
 	bottom: 0;
+}
+
+body > .footer .tooltip {
+	position: absolute;
+	padding: 8px 15px;
+	border: solid 1px #E6E6E6;
+	border-bottom-width: 3px;
+	border-radius: 5px;
+	font-size: 22px;
+	font-weight: bold;
+	font-family: Bariol;
+	color: #2096F3;
+	display: inline-block;
+	background: #fff;
+	margin-left: 10px;
+  margin-top: -55px;
+}
+
+body > .footer .tooltip:before {
+	position: absolute;
+	bottom: -9px;
+	left: 50%;
+	margin-left: -3.5px;
+	width: 0; 
+	height: 0; 
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-top: 7px solid #E6E6E6;
+	content: "";
 }

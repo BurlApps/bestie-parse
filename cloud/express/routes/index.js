@@ -34,6 +34,9 @@ module.exports.download = function(req, res) {
   Parse.Config.get().then(function(config) {
 	  var ua = req.headers['user-agent']
 	  
+	  // TODO: Remove when iOS is live
+	  return res.redirect(config.get("androidURL"))
+	  
 	  if (/Android/.test(ua))
 			res.redirect(config.get("androidURL"))
 		

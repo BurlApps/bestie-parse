@@ -54,11 +54,11 @@ a {
 }
 
 .disabled {
-  opacity: .8;
+  opacity: 0.2;
 }
 
 *:disabled {
-  opacity: .8;
+  opacity: 0.2;
 }
 
 form {
@@ -91,7 +91,8 @@ input, select, textarea {
   box-shadow: none;
 }
 
-.footer {
+body > .footer {
+	position: relative;
   width: 100%;
   text-align: center;
   padding: 25px;
@@ -101,7 +102,11 @@ input, select, textarea {
   box-sizing: border-box;
 }
 
-.footer img {
+body > .footer .tooltip {
+	display: none;
+}
+
+body > .footer img {
 	height: 50px;
 	margin: 0 10px;
 }
