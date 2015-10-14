@@ -12,7 +12,7 @@ Parse.Cloud.beforeSave("Image", function(req, res) {
 		var multiplier = config.get("imageMultiplier")
 		var priority = config.get("priority")
 		var score = Math.ceil((opponents + (multiplier * (wins - losses))) / Math.max(votes, 1))
-		var random = Math.random() * 0.1 + 0.65
+		var random = Math.random() * 0.1 + 0.75
 	
 	  if(!object.isNew()) {			
 			if(votes > 0) {
