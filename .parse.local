@@ -1,10 +1,12 @@
 {
   "applications": {
     "debug": {
-      "applicationId": "q1NZZSGYNxaYIQq5dDNkMlD407fmm2Hq6BoXBzu4"
+      "applicationId": "q1NZZSGYNxaYIQq5dDNkMlD407fmm2Hq6BoXBzu4",
+      "secret": "m736Jb7Z8atZGPSfW7eBnrOKwJNyDDSUFmTOVT5G"
     },
     "release": {
-      "applicationId": "2umHhGkMh7Gm6dU8rRVgHSPzbW5xOymXzenDx2XC"
+      "applicationId": "2umHhGkMh7Gm6dU8rRVgHSPzbW5xOymXzenDx2XC",
+      "secret": "hu5nnIlQYKc22ly6JAZE3LxcNTPVYGHdhYAyDYr3"
     },
     "_default": {
       "link": "debug"

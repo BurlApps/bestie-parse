@@ -1,11 +1,14 @@
+var fs = require("fs")
+var config = JSON.parse(fs.readFileSync(__dirname + "/../../.parse.local", "utf-8"))
 var Parse = require("parse/node")
 var VoterImage = Parse.Object.extend("Image")
 var mode = process.argv[2]
 
-if(mode == "release") {
-	Parse.initialize("2umHhGkMh7Gm6dU8rRVgHSPzbW5xOymXzenDx2XC", "hu5nnIlQYKc22ly6JAZE3LxcNTPVYGHdhYAyDYr3")
+if(mode in config.applications) {
+	var parse = config.applications[mode]
+	Parse.initialize(parse["applicationId"], parse["secret"])
 } else {
-	Parse.initialize("q1NZZSGYNxaYIQq5dDNkMlD407fmm2Hq6BoXBzu4", "m736Jb7Z8atZGPSfW7eBnrOKwJNyDDSUFmTOVT5G")
+	return console.error("mode not found")
 }
 
 var query = new Parse.Query(VoterImage) 

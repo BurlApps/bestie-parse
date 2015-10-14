@@ -8,7 +8,8 @@ var total = 0
 var path = process.argv[2]
 var output = process.argv[3]
 
-Parse.initialize("q1NZZSGYNxaYIQq5dDNkMlD407fmm2Hq6BoXBzu4", "m736Jb7Z8atZGPSfW7eBnrOKwJNyDDSUFmTOVT5G")
+Parse.initialize("q1NZZSGYNxaYIQq5dDNkMlD407fmm2Hq6BoXBzu4", 
+								 "m736Jb7Z8atZGPSfW7eBnrOKwJNyDDSUFmTOVT5G")
 
 fs.readdir(path, function(err, files) {
 	if(err) return console.error(err)
