@@ -263,7 +263,7 @@
 }
 
 .information .form .message {
-	margin-top: 20px;
+	margin: 15px 0 40px 0;
 	font-size: 20px;
 	color: #0F94F6;
 	text-align: center;
@@ -374,6 +374,7 @@
 	font-size: 100px;
 	color: #EFF1F3;
 	text-align: center;
+	line-height: 50px;
 }
 
 .contact {

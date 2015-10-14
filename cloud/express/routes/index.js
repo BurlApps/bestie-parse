@@ -12,11 +12,7 @@ module.exports.sms = function(req, res) {
 		  return client.sendSms({
 	      to: "+1" + phone.join(""),
 	      from: "+18312004372",
-	      body: [
-		      "Welcome to Bestie! Download the app ",
-		      "and find the best photos of you. ",
-		      config.get("downloadURL")
-	      ].join("")
+	      body: config.get("shareMessage")
 		  })
 		}).then(res.successT, res.errorT)
 	} else {
