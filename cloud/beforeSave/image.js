@@ -18,7 +18,7 @@ Parse.Cloud.beforeSave("Image", function(req, res) {
 			if(votes > 0) {
 				object.set("score", score)
 				
-				if(votes > 3)
+				if(votes > 5)
 					object.set("percent", wins/votes)
 				else
 					object.set("percent", random)
