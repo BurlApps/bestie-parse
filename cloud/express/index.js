@@ -63,8 +63,7 @@ app.use(function(req, res, next) {
 
     data = data || {}
     data.template = data.template || template
-    data.user = data.user || req.session.user
-    data.tutor = data.tutor || req.session.tutor
+    data.user = data.user || req.user
     res.render(template, data)
   }
   
