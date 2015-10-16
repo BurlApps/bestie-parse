@@ -32,7 +32,7 @@ Parse.Cloud.define("feed", function(req, res) {
 		}
 		
 		query.ascending("priority")
-		query[random ? "ascending" : "descending"]("updatedAt")
+		query.descending("updatedAt")
 			
 		query.find(function(images) {			
 			res.success(images.sort(function() {
