@@ -2,7 +2,7 @@ module.exports.home = function(req, res) {
   res.renderT('feed/index')
 }
 
-module.exports.feed = function(req, res) {
+module.exports.feed = function(req, res) {	
 	Parse.Cloud.run("feed", {
 		user: req.user.id
 	}).then(function(results) {

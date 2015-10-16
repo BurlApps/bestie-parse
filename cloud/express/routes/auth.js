@@ -12,8 +12,8 @@ module.exports.login = function(req, res, next) {
   user.set("interested", "female")
   
   user.signUp(null).then(function(user) {	  	  
+		req.user = user
 		req.session.user = user.id
-		res.locals.user = req.user
 
 		next()
   }, res.errorT)
@@ -22,7 +22,7 @@ module.exports.login = function(req, res, next) {
 module.exports.validate = function(req, res, next) {
 	var user = new User()
 	
-	user.id = req.session.user.objectId
+	user.id = req.session.user
 	
 	user.fetch().then(function(user) {
 		req.user = user
