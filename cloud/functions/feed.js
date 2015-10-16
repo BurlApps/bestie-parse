@@ -31,8 +31,7 @@ Parse.Cloud.define("feed", function(req, res) {
 				query.equalTo("gender", random ? "male" : "female")		
 		}
 		
-		query.ascending("priority")
-		query.descending("updatedAt")
+		query.ascending("priority", "updatedAt")
 			
 		query.find(function(images) {			
 			res.success(images.sort(function() {
