@@ -132,21 +132,32 @@
 		<div class="keys left">
 			<div class="key">←</div>
 		</div>
+		<div class="interests <%= user.get("interested") %>">
+			<img class="male" src="/images/male.png"/>
+			<img class="female" src="/images/female.png"/>
+		</div>
 		<div class="keys right">
 			<div class="key">→</div>
 		</div>
 		<div class="clear"></div>
 	</div>
-	<div class="interests <%= user.get("interested") %>">
-		<img class="male" src="/images/male.png"/>
-		<img class="female" src="/images/female.png"/>
+	<div class="share">
+		<div class="left facebook">
+			<div class="fb-like" data-href="<%= url %>" data-width="350px"
+				data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+		</div>
+		<div class="right twitter">
+			<a href="https://twitter.com/intent/tweet?button_hashtag=BestieDuck" class="twitter-hashtag-button"
+				 data-size="large" data-related="BestieDuck" data-url="<%= url %>">Tweet #BestieDuck</a>
+		</div>
+		<div class="clear"></div>
 	</div>
 </div>
 <div class="contact">
 	<a class="link" target="_blank" href="/terms">Terms of Service</a>
 	<a class="link" target="_blank" href="/privacy">Privacy Policy</a>
-	<a class="link" href="mailto:vallelungabrian@gmail.com">Contact Us</a>
 	<a class="link" target="_blank" href="/press">Press Kit</a>
+	<a class="link" href="mailto:vallelungabrian@gmail.com">Contact Us</a>
 </div>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55b677dd55cb12c6" async="async"></script>
