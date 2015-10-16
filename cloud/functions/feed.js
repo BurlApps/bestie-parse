@@ -20,7 +20,7 @@ Parse.Cloud.define("feed", function(req, res) {
 		query.exists("image")
 		query.notEqualTo("flagged", true)
 		query.notEqualTo("active", false)
-		query.notEqualTo("voters", user)
+		//query.notEqualTo("voters", user)
 		query.notEqualTo("creator", user)
 		query.limit(50)
 		
@@ -32,11 +32,7 @@ Parse.Cloud.define("feed", function(req, res) {
 		}
 		
 		query.ascending("priority")
-		
-		if(random) 
-			query.ascending("objectId")
-		else
-			query.descending("objectId")
+		query[random ? "ascending" : "descending"]("updatedAt")
 			
 		query.find(function(images) {			
 			res.success(images.sort(function() {
