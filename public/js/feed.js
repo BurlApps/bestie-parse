@@ -6,6 +6,7 @@ var VotingRoom = function VotingRoom() {
   this.$header = $(".header")
   this.$footer = $(".footer")
   this.$cards = $(".cards")
+  this.$vs = $(".cards .vs")
   this.$card1 = $(".card.left")
   this.$card2 = $(".card.right")
   this.$spinner = $(".spinner")
@@ -198,8 +199,12 @@ VotingRoom.prototype.getCards = function() {
 VotingRoom.prototype.loadCards = function() {
 	if(this.cards.length < 2) return
 	
-	this.formatCard(this.$card1, this.cards[0])
-	this.formatCard(this.$card2, this.cards[1])
+	var card1 = this.cards[0]
+	var card2 = this.cards[1]
+	
+	this.$vs.text(card1.percent == card2.percent ? "TIE" : "OR")
+	this.formatCard(this.$card1, card1)
+	this.formatCard(this.$card2, card2)
 	
 	this.cards.splice(0,2)
 	this.loaded = true
