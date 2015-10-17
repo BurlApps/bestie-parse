@@ -12,20 +12,22 @@ mixpanel.init("<%= mixpanelToken %>");
 <% if(user != null && user.id != null) { %>
   mixpanel.identify("<%= user.id %>")
   mixpanel.people.set({
-    "ID": "<%= user.id %>"
+    "ID": "<%= user.id %>",
+    "Interested": <%= user.get("interested") %>
   })
   mixpanel.register({
-    "User ID": "<%= user.id %>"
+    "User ID": "<%= user.id %>",
+    "Interested": <%= user.get("interested") %>
   });
 <% } %>
 
 mixpanel.people.set({
-	"Tester": <%= tester %>
+	"Tester": <%= tester %>,
 })
 
 mixpanel.register({
   "Tester": <%= tester %>
-});
+})
 
 mixpanel.track('Web.Page.View', {
   'Name' : "<%= title %>",

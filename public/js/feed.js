@@ -113,9 +113,17 @@ VotingRoom.prototype.interestSelected = function(gender) {
 		if(!res.success) 
 			return alert("Failed to update :(")
 			
-			mixpanel.track("Web.User.Interest.Changed", {
-				"Interested": gender
-			})
+		mixpanel.track("Web.User.Interest.Changed", {
+			"Interested": gender
+		})
+		
+		mixpanel.people.set({
+			"Interested": gender,
+		})
+		
+		mixpanel.register({
+		  "Interested": gender
+		})
 		
 		_this.cards = []
 		_this.loaded = false
