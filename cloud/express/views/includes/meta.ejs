@@ -37,9 +37,17 @@ titleOG = titleOG || title
 <% if(visible) { %>
 	<!-- iOS App Tags -->
 	<meta name="apple-itunes-app" content="app-id=<%= itunesID %>">
-	<meta property="al:ios:url" content="bestie://" />
-	<meta property="al:ios:app_store_id" content="<%= itunesID %>" />
-	<meta property="al:ios:app_name" content="Bestie" />
+	
+	<!-- AppLink App Tags -->
+	<% if(itunesID) { %>
+		<meta property="al:ios:url" content="bestie://" />
+		<meta property="al:ios:app_store_id" content="<%= itunesID %>" />
+		<meta property="al:ios:app_name" content="Bestie" />
+	<% } %>
+	
+	<meta property="al:android:url" content="bestie://" />
+  <meta property="al:android:app_name" content="Bestie" />
+  <meta property="al:android:package" content="<%= androidID %>" />
 
 	<!-- Open Graph Meta Tags -->
 	<meta property="og:locale" content="en_us">
@@ -52,6 +60,7 @@ titleOG = titleOG || title
 	<meta property="og:title" content="<%= titleOG %>">
 	<meta property="og:description" content="<%= description %>">
 	<meta property="og:site_name" content="<%= siteName %>"/>
+	<meta property="fb:app_id" content="1650060878609652" />
 
 	<!-- Schema.org markup for Google+ -->
 	<meta itemprop="name" content="<%= titleOG %>">
@@ -68,7 +77,7 @@ titleOG = titleOG || title
 	<meta name="twitter:app:url:iphone" content="bestie://">
 	<meta name="twitter:app:name:googleplay" content="Bestie">
 	<meta name="twitter:app:id:googleplay" content="<%= androidID %>">
-	<meta name="twitter:app:url:googleplay" content="<%= androidURL %>">
+	<meta name="twitter:app:url:googleplay" content="bestie://">
 	<meta name="twitter:image" content="<%= host %>/images/graph.jpg?r=<%= random %>">
   <meta name="twitter:image:width" content="1200" />
   <meta name="twitter:image:height" content="630" />
