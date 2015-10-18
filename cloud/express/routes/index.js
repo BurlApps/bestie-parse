@@ -8,9 +8,12 @@ module.exports.sms = function(req, res) {
 		  var sid = "ACdf6e01e0d0cd943e9aa2a45d6117d624"
 		  var token = "addf9c4db22654ab9b978999e319dd70"
 	    var client  = Twilio(sid, token)
+	    
+	    if(phone.length <= 10) 
+				phone.unshift(1)
 
 		  return client.sendSms({
-	      to: "+1" + phone.join(""),
+	      to: "+" + phone.join(""),
 	      from: "+18312004372",
 	      body: config.get("shareMessage")
 		  })
