@@ -13,11 +13,11 @@ mixpanel.init("<%= mixpanelToken %>");
   mixpanel.identify("<%= user.id %>")
   mixpanel.people.set({
     "ID": "<%= user.id %>",
-    "Interested": <%= user.get("interested") %>
+    "Interested": "<%= user.get("interested") %>"
   })
   mixpanel.register({
     "User ID": "<%= user.id %>",
-    "Interested": <%= user.get("interested") %>
+    "Interested": "<%= user.get("interested") %>"
   });
 <% } %>
 
