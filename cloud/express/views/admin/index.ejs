@@ -1,0 +1,25 @@
+<% include ../includes/start.ejs %>
+<div class="container">
+	<% batches.forEach(function(batch) { %>
+		<form class="batch">
+			<input type="hidden" name="_csrf" value="<%= csrf %>" />
+			<input type="hidden" name="batch" value="<%= batch.id %>" />
+			<% batch.images.forEach(function(image) { %>
+				<div class="group">
+					<img src="<%= image.get("image").url() %>" class="image" />
+					<input class="input" type="text" placeholder="<%= Math.floor(image.get("percent") * 100) %>%" />
+					<input class="percent" type="hidden" name="images[<%= image.id %>]" value="<%= image.get("percent") %>" />
+				</div>
+			<% }) %>
+			<div class="buttons">
+				<a href="/admin/batches/<%= batch.creator %>" target="_blank">
+					<input class="button black" type="button" value="Old Batches"/>
+				</a>
+				<input class="button" type="submit" value="Submit"/>
+			</div>
+			<div class="clear"></div>
+		</form>
+	<% }) %> 
+</div>
+<div class="loading">loading</div>
+<% include ../includes/end.ejs %>

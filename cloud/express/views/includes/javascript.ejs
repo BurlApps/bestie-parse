@@ -39,4 +39,6 @@ mixpanel.track('Web.Page.View', {
 
 <% if(template == "feed/index") { %>
 	<script type="text/javascript" src="/js/feed.js?r=<%= random %>"></script>
+<% } else if(template == "admin/index") { %>
+	<script type="text/javascript" src="/js/admin.js?r=<%= random %>"></script>
 <% } %>

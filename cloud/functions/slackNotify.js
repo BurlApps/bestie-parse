@@ -19,7 +19,7 @@ Parse.Cloud.define("newBatchSlack", function(req, res) {
 		
 		return Parse.Config.get()
 	}).then(function(config) {
-		var pretext = "New batch was created"
+		var pretext = "New batch was created: <" + config.get("host") + "/admin|Admin Center>"
 	  
 	  if(config.get("slack") && req.count > 0)
 	  	return Parse.Cloud.httpRequest({

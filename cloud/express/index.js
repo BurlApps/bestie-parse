@@ -10,6 +10,7 @@ var routes = {
   core: require("cloud/express/routes/index"),
   auth: require("cloud/express/routes/auth"),
   feed: require("cloud/express/routes/feed"),
+  admin: require("cloud/express/routes/admin"),
 }
 
 // Global app configuration section
@@ -74,6 +75,7 @@ app.use(function(req, res, next) {
 
   // Auth
   res.locals.csrf = req.session._csrf
+  req.basicAuth = express.basicAuth
 
   // Locals
   res.locals.host = req.session.host || ("http://" + req.host)
@@ -123,6 +125,11 @@ app.post('/sms', routes.core.sms)
 app.post('/feed', routes.auth.login, routes.feed.feed)
 app.post('/feed/voted', routes.auth.login, routes.feed.voted)
 app.post('/feed/interest', routes.auth.login, routes.auth.interest)
+
+app.get('/admin', routes.admin.auth, routes.admin.batches)
+app.get('/admin/batches/:user', routes.admin.auth, routes.admin.user)
+
+app.post('/admin/batch', routes.admin.auth, routes.admin.batch)
 
 // Terms & Privacy
 app.get('/terms', routes.core.terms)

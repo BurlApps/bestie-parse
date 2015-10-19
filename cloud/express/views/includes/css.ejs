@@ -6,4 +6,6 @@
 	<link rel="stylesheet" href="/css/feed.css?r=<%= random %>">
 <% } else if(template == "home/notfound") { %>
 	<link rel="stylesheet" href="/css/notfound.css?r=<%= random %>">
+<% } else if(template.split("/")[0] == "admin") { %>
+	<link rel="stylesheet" href="/css/admin.css?r=<%= random %>">
 <% } %>

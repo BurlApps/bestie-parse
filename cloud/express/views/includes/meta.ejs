@@ -15,6 +15,12 @@ switch(template) {
   case "home/notfound":
     title = "404 - Page Not Found"
     break
+    
+  case "admin/index":
+  case "admin/user":
+    title = "Admin Center"
+    visible = false
+    break
 }
 
 titleOG = titleOG || title

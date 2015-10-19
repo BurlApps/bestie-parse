@@ -1,0 +1,15 @@
+<% include ../includes/start.ejs %>
+<div class="container show">
+	<% batches.forEach(function(batch) { %>
+		<div class="batch">
+			<% batch.images.forEach(function(image) { %>
+				<div class="group">
+					<img src="<%= image.get("image").url() %>" class="image" />
+					<input class="input" type="text" value="<%= Math.floor(image.get("percent") * 100) %>%" readonly="readonly" />
+				</div>
+			<% }) %>
+			<div class="clear"></div>
+		</div>
+	<% }) %> 
+</div>
+<% include ../includes/end.ejs %>
