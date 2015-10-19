@@ -80,6 +80,7 @@ module.exports.batch = function(req, res) {
 				image.id = key
 				image.set("override", true)
 				image.set("percent", percent)
+				image.set("score", Math.floor(percent * 100))
 				
 				return image.save()
 			})
