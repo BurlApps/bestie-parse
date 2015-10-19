@@ -16,6 +16,7 @@ module.exports.batches = function(req, res) {
 	var batches = []
 	
 	query.equalTo("active", true)
+	query.notEqualTo("override", true)
 	query.greaterThan("maxVotes", 0)
 	
 	query.each(function(batch) {
@@ -86,6 +87,7 @@ module.exports.batch = function(req, res) {
 		
 		return promise
 	}).then(function() {
+		batch.set("override", true)
 		batch.set("votes", batch.get("maxVotes"))
 		
 		return batch.save()

@@ -42,6 +42,7 @@ Parse.Cloud.beforeSave("Image", function(req, res) {
 		object.set("opponents", 0)
 		object.set("flagged", false)
 		object.set("priority", 0)
+		object.set("override", false)
 		
 		return res.success()
 	})

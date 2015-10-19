@@ -9,6 +9,7 @@ Parse.Cloud.beforeSave("Batch", function(req, res) {
 	if(object.isNew()) {
 		object.set("votes", 0)
 		object.set("userVotes", 0)
+		object.set("override", false)
 		
 		return res.success()
 	}
