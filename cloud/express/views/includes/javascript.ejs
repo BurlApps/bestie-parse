@@ -29,11 +29,13 @@ mixpanel.register({
   "Tester": <%= tester %>
 })
 
-mixpanel.track('Web.Page.View', {
-  'Name' : "<%= title %>",
-  'URL' : window.location.pathname,
-  "Template": "<%= template %>"
-})
+<% if(visible) { %>
+	mixpanel.track('Web.Page.View', {
+	  'Name' : "<%= title %>",
+	  'URL' : window.location.pathname,
+	  "Template": "<%= template %>"
+	})
+<% } %>
 </script>
 <!-- end Mixpanel -->
 
