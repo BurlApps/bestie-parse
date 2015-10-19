@@ -12,7 +12,6 @@ Parse.Cloud.define("newBatchSlack", function(req, res) {
   }).then(function(count) {
 	  req.count = count
 	  
-	  
 	  return batch.get("creator").fetch()
 	}).then(function(creator) {
 		req.creator = creator
