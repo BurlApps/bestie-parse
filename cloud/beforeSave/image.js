@@ -15,19 +15,19 @@ Parse.Cloud.beforeSave("Image", function(req, res) {
 		var score = Math.ceil((opponents + (multiplier * (wins - losses))) / Math.max(votes, 1))
 		var random = Math.random() * 0.35 + 0.5
 		var randomLow = Math.random() * 0.15 + 0.1
-		
-		if(override == true)
-			return res.success()
 	
 	  if(!object.isNew()) {
 		  score = Math.max(0, score)
 			percent = (score * wins)/opponents
 			percent = Math.max(randomLow, percent)
 			percent = Math.min(1, percent)
-		
-			object.set("percent", votes > 3 ? percent : random)				
-			object.set("score", score)
+			
 			object.set("priority", Math.floor(votes/maxVotes))
+			
+			if(override != true) {
+				object.set("percent", votes > 3 ? percent : random)				
+				object.set("score", score)
+			}
 		  
 		  return res.success()
 	  }
