@@ -85,19 +85,20 @@ app.use(function(req, res, next) {
 	res.locals.androidID = req.session.androidID || ""
 	res.locals.androidURL = req.session.androidURL || ""
   res.locals.mixpanelToken = req.session.mixpanelToken || ""
+  res.locals.shareTwitter = req.session.shareTwitter || ""
   res.locals.tester = req.session.tester || 1
   res.locals.random = random
   res.locals.config = {}
   res.locals.support = false
 
-  if(req.session.appliedSettings !== true || !req.session.tester) {
+  if(!req.session.shareTwitter) {
     Parse.Config.get().then(function(settings) {
-	    req.session.appliedSettings = true
 	    req.session.itunesID = settings.get("itunesId")
 	    req.session.androidID = settings.get("androidId")
 	    req.session.androidURL = settings.get("androidURL")
 	    req.session.host = settings.get("host")
       req.session.mixpanelToken = settings.get("mixpanelToken")
+      req.session.shareTwitter = settings.get("shareTwitter")
       req.session.tester = Math.floor(Math.random() * 4) + 1 
 	    
 	    res.locals.tester = req.session.tester
@@ -106,6 +107,7 @@ app.use(function(req, res, next) {
 	    res.locals.androidID = req.session.androidID
 	    res.locals.androidURL = req.session.androidURL
       res.locals.mixpanelToken = req.session.mixpanelToken
+      res.locals.shareTwitter = req.session.shareTwitter
       next()
     })
   } else {

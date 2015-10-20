@@ -174,7 +174,7 @@ VotingRoom.prototype.cardSelected = function($card) {
 	})
 	
 	mixpanel.track("Web.Set.Voted", {
-		Position: winner == oneID ? "left" : "right" 
+		Position: winner == oneID ? "Left" : "Right" 
 	})
 }
 
