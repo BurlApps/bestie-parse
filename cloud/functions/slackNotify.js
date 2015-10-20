@@ -29,7 +29,7 @@ Parse.Cloud.define("newBatchSlack", function(req, res) {
 					attachments:[{
 						fallback: pretext,
 						pretext: pretext,
-						color: "danger",
+						color: "#2296F3",
 						fields: [{
 							title: "Creator: " + req.creator.get("gender"),
 							value: "Images uploaded: " + req.count,
