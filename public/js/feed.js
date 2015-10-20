@@ -173,7 +173,9 @@ VotingRoom.prototype.cardSelected = function($card) {
 		loser: winner != oneID ? oneID : twoID
 	})
 	
-	mixpanel.track("Web.Set.Voted")
+	mixpanel.track("Web.Set.Voted", {
+		Position: winner == oneID ? "left" : "right" 
+	})
 }
 
 VotingRoom.prototype.getCards = function() {
