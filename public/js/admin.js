@@ -1,6 +1,12 @@
 $(function() {
-	$(".loading").hide()
 	$(".container").show()
+	
+	if($(".batch").length > 0) {
+		$(".loading").hide()
+	} else {
+		$(".loading").text("No new batches...")
+		reloadPage()
+	}
 	
 	$(".input").blur(function() {
 		var ele = $(this)
@@ -24,5 +30,16 @@ $(function() {
 		var form = $(this).slideUp()
 		
 		$.post("/admin/batch", form.serialize())
+		
+		if($(".batch:visible").length == 0) {
+			$(".loading").text("No new batches...").show()
+			reloadPage()
+		}
 	})
 })
+
+function reloadPage() {
+	setTimeout(function() {
+		window.location.reload()
+	}, 30000)
+}
