@@ -38,6 +38,10 @@ Parse.Cloud.define("newBatchSlack", function(req, res) {
 	      	}]
 	      })
 	    })
+	}).then(function() {	
+	  batch.set("alerted", true)
+	  
+	  return batch.save() 
   }).then(function() {
     res.success("New batch notification sent")
   }, function(error) {

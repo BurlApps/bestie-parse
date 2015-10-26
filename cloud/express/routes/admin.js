@@ -23,6 +23,9 @@ module.exports.batches = function(req, res) {
 		var relation = batch.relation("images")
 		var imagesQuery = relation.query()
 		
+		if(batch.get("userVotes") >= batch.get("maxVotes"))
+			return
+		
 		imagesQuery.descending("percent")
 		
 		return imagesQuery.find(function(images) {			

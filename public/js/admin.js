@@ -33,7 +33,7 @@ $(function() {
 		
 		setTimeout(function() {
 			if($(".batch:visible").length == 0) {
-				$(".loading").text("No new batches...")
+				$(".loading").text("No new batches...").show()
 				reloadPage()
 			}
 		}, 250)

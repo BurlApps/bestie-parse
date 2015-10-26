@@ -22,6 +22,7 @@ Parse.Cloud.define("feed", function(req, res) {
 		query.notEqualTo("active", false)
 		//query.notEqualTo("voters", user)
 		query.notEqualTo("creator", user)
+		query.notEqualTo("percent", 0)
 		query.limit(50)
 		
 		if(interested) {
