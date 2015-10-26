@@ -5,8 +5,9 @@ Parse.Cloud.afterSave("Batch", function(req, res) {
   var userVotes = object.get("userVotes")
   var maxVotes = object.get("userVotes")
   var alerted = object.get("alerted")
+  var override = object.get("override")
   
-  if(active && userVotes >= maxVotes && alerted != true)  
+  if(active && userVotes >= maxVotes && alerted != true && override != true)  
 	  Parse.Cloud.run("newBatchSlack", {
 			batch: object.id
 		})

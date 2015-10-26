@@ -16,15 +16,13 @@ module.exports.batches = function(req, res) {
 	var batches = []
 	
 	query.equalTo("active", true)
+	query.equalTo("alerted", true)
 	query.notEqualTo("override", true)
 	query.greaterThan("maxVotes", 0)
 	
 	query.each(function(batch) {
 		var relation = batch.relation("images")
 		var imagesQuery = relation.query()
-		
-		if(batch.get("userVotes") >= batch.get("maxVotes"))
-			return
 		
 		imagesQuery.descending("percent")
 		
