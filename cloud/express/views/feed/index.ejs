@@ -21,7 +21,10 @@
 					photo to post on <strong class="js-rotating">Instagram, Facebook, Twitter</strong>
 				<% } %>
 			</div>
-			<form class="form" method="POST" action="/sms">
+			<a href="/android" class="download-icon ">
+				<img src="/images/android-banner.png"/>
+			</a>
+			<form class="form hidden" method="POST" action="/sms">
 				<input type="hidden" name="_csrf" value="<%= csrf %>"/>
 				<input type="phone" class="input left" name="phone" placeholder="Text me the app: 831-200-4372"/>
 				<input type="submit" class="button right" value="Download" />
@@ -160,6 +163,9 @@
 	<a class="link" target="_blank" href="/privacy">Privacy Policy</a>
 	<a class="link" target="_blank" href="/press">Press Kit</a>
 	<a class="link" href="mailto:vallelungabrian@gmail.com">Contact Us</a>
+	<a class="mixpanel" href="https://mixpanel.com/f/partner" rel="nofollow">
+		<img src="//cdn.mxpnl.com/site_media/images/partner/badge_light.png" alt="Mobile Analytics" />
+	</a>
 </div>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55b677dd55cb12c6" async="async"></script>

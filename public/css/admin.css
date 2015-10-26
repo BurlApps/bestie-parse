@@ -51,6 +51,7 @@
 	font-family: Bariol;
 	border-radius: 0 0 4px 4px;
 	box-sizing: border-box;
+	-webkit-appearance: none;
 }
 
 .batch .buttons {
@@ -72,6 +73,7 @@
 	height: 45px;
 	width: 100%;
 	display: block;
+	-webkit-appearance: none;
 }
 
 .batch .button:hover {

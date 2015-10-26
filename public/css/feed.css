@@ -6,6 +6,16 @@
 	height: 50px;
 }
 
+.download-icon {
+	width: 300px;
+  margin: 40px auto;
+  display: block;
+}
+
+.download-icon img {
+	width: 100%;
+}
+
 .voting {
 	background: url("/images/background.png");
 	position: relative;
@@ -403,6 +413,7 @@
 }
 
 .contact {
+	position: relative;
 	padding: 40px 0;
 	text-align: center;
 }
@@ -416,6 +427,10 @@
 
 .contact .link:hover {
 	text-decoration: underline;
+}
+.contact .mixpanel {
+	position: absolute;
+	right: 20px;
 }
 
 body > .footer {

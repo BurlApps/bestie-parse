@@ -27,14 +27,16 @@ $(function() {
 		e.preventDefault()
 		e.stopPropagation()
 		
-		var form = $(this).slideUp()
+		var form = $(this).slideUp(200)
 		
 		$.post("/admin/batch", form.serialize())
 		
-		if($(".batch:visible").length == 0) {
-			$(".loading").text("No new batches...").show()
-			reloadPage()
-		}
+		setTimeout(function() {
+			if($(".batch:visible").length == 0) {
+				$(".loading").text("No new batches...")
+				reloadPage()
+			}
+		}, 250)
 	})
 })
 

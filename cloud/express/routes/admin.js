@@ -21,8 +21,11 @@ module.exports.batches = function(req, res) {
 	
 	query.each(function(batch) {
 		var relation = batch.relation("images")
+		var imagesQuery = relation.query()
 		
-		return relation.query().find(function(images) {			
+		imagesQuery.descending("percent")
+		
+		return imagesQuery.find(function(images) {			
 			if(images.length > 0)
 				return batches.push({
 					id: batch.id,
@@ -45,11 +48,15 @@ module.exports.user = function(req, res) {
 	creator.id = req.param("user")
 	
 	query.equalTo("creator", creator)
+	query.equalTo("active", false)
 	
 	query.each(function(batch) {
 		var relation = batch.relation("images")
+		var imagesQuery = relation.query()
 		
-		return relation.query().find(function(images) {			
+		imagesQuery.descending("percent")
+		
+		return imagesQuery.find(function(images) {			
 			if(images.length > 0)
 				return batches.push({
 					id: batch.id,
