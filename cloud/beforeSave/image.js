@@ -20,7 +20,7 @@ Parse.Cloud.beforeSave("Image", function(req, res) {
 		  score = Math.max(0, score)
 			percent = (score * wins)/opponents
 			percent = Math.max(randomLow, percent)
-			percent = Math.min(0.99, percent)
+			percent = Math.min(0.97, percent)
 			
 			object.set("priority", Math.floor(votes/maxVotes))
 			

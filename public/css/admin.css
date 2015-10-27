@@ -85,6 +85,10 @@
 	height: 200px;
 }
 
+.batch .button.full {
+	height: 100%;
+}
+
 .batch .button.black:hover {
 	background: #224a6b;
 }

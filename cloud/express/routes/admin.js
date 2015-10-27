@@ -23,16 +23,26 @@ module.exports.batches = function(req, res) {
 	query.each(function(batch) {
 		var relation = batch.relation("images")
 		var imagesQuery = relation.query()
+		var data = { id: batch.id } 
 		
 		imagesQuery.descending("percent")
 		
 		return imagesQuery.find(function(images) {			
-			if(images.length > 0)
-				return batches.push({
-					id: batch.id,
-					images: images,
-					creator: batch.get("creator").id
-				})
+			data.images = images
+		}).then(function() {
+			var creator = batch.get("creator")
+			var cRelation = creator.relation("batches")
+			var batchQuery = cRelation.query()
+			
+			batchQuery.equalTo("active", false)
+			
+			return batchQuery.count().then(function(count) {
+				data.count = count
+				data.creator = creator.id
+				
+				if(data.images.length)
+					return batches.push(data)
+			})
 		})
 	}).then(function() {
 		res.renderT("admin/index", {
