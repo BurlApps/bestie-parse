@@ -21,10 +21,7 @@
 					photo to post on <strong class="js-rotating">Instagram, Facebook, Twitter</strong>
 				<% } %>
 			</div>
-			<a href="/android" class="download-icon ">
-				<img src="/images/android-banner.png"/>
-			</a>
-			<form class="form hidden" method="POST" action="/sms">
+			<form class="form" method="POST" action="/sms">
 				<input type="hidden" name="_csrf" value="<%= csrf %>"/>
 				<input type="phone" class="input left" name="phone" placeholder="Text me the app: 831-200-4372"/>
 				<input type="submit" class="button right" value="Download" />
